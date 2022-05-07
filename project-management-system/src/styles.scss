@@ -103,6 +103,16 @@ section {
   display: block;
 }
 
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+}
+
+button {
+  border:none;
+}
+
 body {
   line-height: 1;
 }
@@ -138,4 +148,9 @@ body {
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
 }

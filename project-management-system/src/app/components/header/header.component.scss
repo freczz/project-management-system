@@ -1,0 +1,111 @@
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  .header__top {
+    height: 60px;
+    background: linear-gradient(to bottom, #000, 90%, #211C1A);
+    position: sticky;
+    top: 0px;
+    z-index: 11;
+
+    .header__container {
+      max-width: 1170px;
+      margin: 0 auto;
+      display: flex;
+      padding-top: 12px;
+      position: sticky;
+      top: -10px;
+
+      .mat-success {
+        background-color: #d5bda5;
+        color: #211c1a;
+
+        &:hover {
+          background: #b6a28d;
+        }
+      }
+
+      .header__left {
+        flex: 0 0 50%;
+        display: flex;
+
+        .header__title {
+          margin: 0;
+          flex: 0 0 50%;
+          color: #fff;
+          font-size: 40px;
+          font-weight: 900;
+          font-style: italic;
+          padding-top: 4px;
+        }
+
+        .header__button_board {
+          flex: 0 0 25%;
+          display: flex;
+          justify-content: center;
+        }
+
+        .header__button_profile {
+          flex: 0 0 25%;
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .header__right {
+        flex: 0 0 50%;
+        display: flex;
+
+        .header__langs {
+          flex: 0 0 75%;
+          display: flex;
+          justify-content: right;
+          margin-top: 8px;
+
+          ::ng-deep .mat-button-toggle-group {
+            height: 24px;
+            border-radius: 5px;
+          }
+
+          .mat-button-toggle {
+            background-color: #d5bda5;
+            color: #211c1a;
+            height: 24px;
+
+            ::ng-deep .mat-button-toggle-label-content {
+              font-size: 14px;
+              padding: 0 10px;
+              line-height: 24px;
+            }
+
+            &:hover {
+              background-color: #b6a28d;
+            }
+          }
+
+          .mat-button-toggle-checked {
+            background-color: #938472;
+            color: #000;
+          }
+        }
+
+        .header__button_logout {
+          flex: 0 0 25%;
+          display: flex;
+          justify-content: right;
+        }
+      }
+    }
+  }
+
+  .header__bottom {
+    height: 30px;
+    background: #211C1A;
+    position: sticky;
+    top: 30px;
+    z-index: 10;
+  }
+}

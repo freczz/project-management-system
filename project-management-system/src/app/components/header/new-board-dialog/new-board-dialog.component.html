@@ -1,0 +1,34 @@
+<section class="new_board">
+  <h2 class="new_board__title">Создать доску</h2>
+  <form
+    class="new_board__form"
+    [formGroup]="newBoardForm"
+    (ngSubmit)="createBoard({
+      title: newBoardForm.get('title')?.value
+    })"
+  >
+    <div class="new_board__input">
+      <mat-form-field appearance="fill">
+        <mat-label>Название</mat-label>
+        <input matInput type="text" formControlName="title">
+      </mat-form-field>
+    </div>
+    <div class="new_board__buttons">
+      <div class="new_board__exit">
+        <button
+          mat-raised-button
+          color="success"
+          (click)="closeDialog()"
+        >Отмена</button>
+      </div>
+      <div class="new_board__submit">
+        <button
+          mat-raised-button
+          color="success"
+          type="submit"
+          (click)="validateFormFields()"
+        >Создать</button>
+      </div>
+    </div>
+  </form>
+</section>
