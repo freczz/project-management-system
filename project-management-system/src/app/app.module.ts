@@ -23,6 +23,7 @@ import HeaderComponent from './components/header/header.component';
 import NewBoardDialogComponent from './components/header/new-board-dialog/new-board-dialog.component';
 import DeleteConfirmationComponent from './components/delete-confirmation/delete-confirmation.component';
 import FooterComponent from './components/footer/footer.component';
+import WelcomeComponent from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import FooterComponent from './components/footer/footer.component';
     MainItemComponent,
     NewBoardDialogComponent,
     SearchPipe,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -25,6 +25,7 @@ export interface ITeam {
   lastName: string;
   githubLink: string;
   status: string;
+  githubName: string;
   tasks: string[];
 }
 
