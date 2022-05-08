@@ -1,0 +1,22 @@
+<section class="main">
+  <div class="main__body">
+    <div class="main__top">
+      <h2 class="main__title">Доски</h2>
+      <div class="main__search">
+        <mat-form-field appearance="fill">
+          <mat-label>Поиск</mat-label>
+          <input matInput (input)="changeSearchValue($event)">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="main__boards">
+      <pms-main-item
+        class="main__board"
+        *ngFor="let item of items | search:searchValue , let i = index"
+        [board]="item"
+        [index]="i"
+        [title]="item.title"
+      ></pms-main-item>
+    </div>
+  </div>
+</section>

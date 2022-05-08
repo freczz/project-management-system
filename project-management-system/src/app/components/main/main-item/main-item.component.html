@@ -1,0 +1,13 @@
+<button
+  class="main__button"
+  title="Удалить"
+  (click)="openDialog($event)"
+>
+  <p>{{firstLetter}}</p>
+  <img
+    class="main__img_delete"
+    src="assets/svg/delete.svg"
+    alt="delete icon"
+  >
+</button>
+<a routerLink="/" class="main__link">{{board.title}}</a>
