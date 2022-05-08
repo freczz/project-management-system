@@ -1,0 +1,145 @@
+.welcome {
+  width: 100%;
+  background: #d5bda5;
+  height: auto;
+  font-size: 22px;
+  z-index: 9;
+
+  @media (min-width: 2000px) {
+    height: 100vh;
+  }
+
+  .welcome-wrapper {
+    width: 60%;
+    margin: auto;
+
+    .welcome-title {
+      font-size: 26px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .course {
+      font-size: 16px;
+      text-align: center;
+      line-height: 35px;
+    }
+
+    .about-project {
+      width: 100%;
+      height: 100%;
+      margin-top: 50px;
+
+      .auth-container {
+        display: flex;
+        position: relative;
+        justify-content: right;
+        column-gap: 15px;
+        position: absolute;
+        top: 135px;
+        right: 400px;
+
+        @media (max-width: 1416px) {
+          top: 140px;
+        }
+
+        @media (max-width: 906px) {
+          position: static;
+        }
+
+        .login-text {
+          font-size: 12px;
+          text-align: center;
+          line-height: 0px;
+        }
+
+        .login {
+          width: 40px;
+          height: 40px;
+
+          &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+            transition: 0.5s;
+          }
+        }
+      }
+
+      .team-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        .person {
+          border: 5px solid rgb(80, 21, 21);
+          border-radius: 10px;
+          width: 300px;
+          min-height: 320px;
+          margin-bottom: 100px;
+
+          .person-wrapper {
+            width: 95%;
+            height: 95%;
+            margin: 10px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 10px;
+
+            .person-img {
+              width: 85%;
+              height: 220px;
+              border: 3px solid rgb(80, 21, 21);
+              border-radius: 10px;
+              object-fit: cover;
+            }
+
+            .github-link {
+              text-decoration: none;
+              color: grey;
+              font-size: 16px;
+
+              &:hover {
+                color: rgb(88, 69, 69);
+                text-decoration: underline;
+                transition: 0.5s;
+              }
+            }
+
+            .person-specialization,
+            .task-item {
+              font-size: 16px;
+            }
+
+            .tasks {
+              list-style-type: decimal;
+              position: static;
+              display: block;
+              width: 200px;
+
+              .task-item {
+                line-height: 25px;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      .about-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 60px;
+      }
+
+      .project-description {
+        text-align: justify;
+        text-indent: 3%;
+        max-width: 700px;
+        line-height: 30px;
+        margin: 0 auto;
+      }
+    }
+  }
+}

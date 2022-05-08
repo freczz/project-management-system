@@ -1,0 +1,62 @@
+<section class="welcome">
+  <div class="welcome-wrapper">
+    <h2 [@expandTitle]="state" class="welcome-title">
+      Project Management System
+    </h2>
+    <p class="course">Angular course 2022</p>
+    <div class="about-project">
+      <div class="about-container">
+        <div class="auth-container">
+          <div class="sign-up">
+            <p class="login-text">Login</p>
+            <img
+              src="../../../assets/svg/login.svg"
+              class="login"
+              alt="login"
+              routerLink="/authorization"
+            />
+          </div>
+          <div class="registrtion">
+            <p class="login-text">Sign up</p>
+            <img
+              src="../../../assets/svg/registr.svg"
+              class="login"
+              alt="login"
+              routerLink="/registration"
+            />
+          </div>
+        </div>
+        <h3 class="about-title">О проекте:</h3>
+        <p class="project-description">
+          Система управления проектами – приложение помогающее достичь
+          поставленные задачи отдельному человеку в команде или группе
+          разработчиков.
+        </p>
+      </div>
+      <h3 class="about-title">О нас:</h3>
+      <div class="team-container">
+        <div class="person" *ngFor="let person of team">
+          <div class="person-wrapper">
+            <img
+              src="{{ person.imgLink }}"
+              alt=" {{ person.firstName }}"
+              class="person-img"
+            />
+            <p class="person-name">{{ person.firstName }}</p>
+            <a
+              href="https://github.com/freczz"
+              target="_blank"
+              class="github-link"
+            >{{ person.githubName }}</a>
+            <p class="person-specialization">{{ person.status }}</p>
+            <ul class="tasks">
+              <li class="task-item" *ngFor="let item of person.tasks">
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
