@@ -3,7 +3,8 @@
     <div class="header__container">
       <div class="header__left">
         <h1 class="header__title">
-          <a routerLink="">PMS</a></h1>
+          <a routerLink="">PMS</a>
+        </h1>
         <div class="header__button_board">
           <button
             mat-raised-button
@@ -19,25 +20,25 @@
           >Edit Profile</button>
         </div>
       </div>
-        <div class="header__right">
-          <div class="header__langs">
-            <mat-button-toggle-group
-              appearance="legacy"
-              name="lang"
-              aria-label="Lang"
-            >
-              <mat-button-toggle value="en">En</mat-button-toggle>
-              <mat-button-toggle value="ru">Ru</mat-button-toggle>
-            </mat-button-toggle-group>
-          </div>
-          <div class="header__button_logout">
-            <button
-              mat-raised-button
-              color="success"
-              (click)="logout()"
-            >Logout</button>
-          </div>
+      <div class="header__right">
+        <div class="header__langs">
+          <mat-button-toggle-group
+            appearance="legacy"
+            name="lang"
+            aria-label="Lang"
+          >
+            <mat-button-toggle value="en">En</mat-button-toggle>
+            <mat-button-toggle value="ru">Ru</mat-button-toggle>
+          </mat-button-toggle-group>
         </div>
+        <div class="header__button_logout">
+          <button
+            mat-raised-button
+            color="success"
+            (click)="logout()"
+          >Logout</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="header__bottom">

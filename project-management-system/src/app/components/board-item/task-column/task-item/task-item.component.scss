@@ -1,0 +1,35 @@
+.task-block {
+  position: relative;
+  transition: .3s;
+  background-color: #c4b7a6;
+  color: #211c1a;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #d5bda579;
+    transition: .3s
+  }
+
+  .title-block {
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+
+    .title {
+      font-size: 16px;
+    }
+
+    .edit-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 10px;
+      min-width: unset;
+
+      mat-icon {
+        transform: scale(0.6);
+        color: #ffffff;
+      }
+    }
+  }
+}

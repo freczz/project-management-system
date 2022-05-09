@@ -1,14 +1,17 @@
 {
   "root": true,
   "ignorePatterns": [
-    "projects/**/*",
-    "**/store/**"
+    "projects/**/*"
   ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "parserOptions": {
-        "project": ["tsconfig.json"],
+        "project": [
+          "tsconfig.json"
+        ],
         "createDefaultProgram": true
       },
       "extends": [

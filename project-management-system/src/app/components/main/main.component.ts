@@ -20,6 +20,8 @@ import PMSState from 'src/app/store/pms.state';
 export default class MainComponent implements OnInit {
   public items: IBoard[] = [];
 
+  private cloneItems: IBoard[] = [];
+
   public searchValue: string = '';
 
   private token: string = '';
@@ -55,6 +57,11 @@ export default class MainComponent implements OnInit {
         this.goToWelcomePage();
       }
     );
+    this.cloneItems = this.items;
+  }
+
+  public isResponseSuccess(): boolean {
+    return this.cloneItems === this.items;
   }
 
   private getCurrentUserData(): void {

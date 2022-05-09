@@ -1,0 +1,42 @@
+<mat-expansion-panel
+  (afterExpand)="titleInputColumn.focus()"
+  [(expanded)]="isExpanded"
+  [disabled]="isExpanded"
+  hideToggle
+>
+  <mat-expansion-panel-header *ngIf="!isExpanded">
+    <mat-panel-title class="white-theme">
+      <mat-icon>add</mat-icon>
+      <span>Add column</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form
+    #form="ngForm"
+    [formGroup]="formGroup"
+    (ngSubmit)="onSubmit(form, titleInputColumn)"
+  >
+    <mat-form-field appearance="outline">
+      <input
+        #titleInputColumn
+        matInput
+        class="title-input white-theme"
+        formControlName="title"
+        placeholder="Enter column title"
+        type="text"
+      />
+    </mat-form-field>
+    <div class="btns-block">
+      <button
+        class="btn-submit"
+        type="submit"
+        color="primary"
+        mat-raised-button
+      >
+        Add column
+      </button>
+      <button type="button" mat-button (click)="resetForm(form)">
+        <mat-icon class="white-theme" matSuffix>highlight_off</mat-icon>
+      </button>
+    </div>
+  </form>
+</mat-expansion-panel>

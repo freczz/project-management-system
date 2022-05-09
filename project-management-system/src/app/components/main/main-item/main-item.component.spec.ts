@@ -1,5 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
 import environment from 'src/environments/environment';
@@ -17,6 +21,7 @@ describe('MainItemComponent', () => {
         NgxsModule.forRoot([PMSState], {
           developmentMode: !environment.production,
         }),
+        RouterModule.forRoot([]),
       ],
       providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();

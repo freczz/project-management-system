@@ -5,9 +5,15 @@ import { Observable } from 'rxjs';
 import { BASE_URL, EMPTY_ITEM_TO_DELETE } from '../constants/constants';
 import {
   IBoard,
+  IColumns,
   IItemToDelete,
   INewBoardFormData,
+  IPostColumns,
+  IPostTasks,
+  IResponse,
+  ITasks,
   IUser,
+  IUsers,
 } from '../interfaces/interfaces';
 import PMSState from '../store/pms.state';
 
@@ -16,6 +22,10 @@ import PMSState from '../store/pms.state';
 })
 export default class HttpService {
   private itemToDelete: IItemToDelete = EMPTY_ITEM_TO_DELETE;
+
+  public dataColumns: IColumns[] = [];
+
+  public currentBoardId: string = '';
 
   constructor(private http: HttpClient, private store: Store) {}
 
@@ -82,5 +92,106 @@ export default class HttpService {
       }
     }
     return this.http.delete<IItemToDelete>(`${BASE_URL}${resultLink}`);
+  }
+
+  public createColumn(
+    formData: IPostColumns,
+    token: string
+  ): Observable<IPostColumns> {
+    return this.http.post<IPostColumns>(
+      `${BASE_URL}boards/${this.currentBoardId}/columns`,
+      formData,
+      {
+        headers: new HttpHeaders({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+      }
+    );
+  }
+
+  public getUser(token: string): Observable<IUsers[]> {
+    return this.http.get<IUsers[]>(`${BASE_URL}users`, {
+      headers: new HttpHeaders({
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      }),
+    });
+  }
+
+  public getTasks(token: string, columnId: string): Observable<ITasks[]> {
+    return this.http.get<ITasks[]>(
+      `${BASE_URL}boards/${this.currentBoardId}/columns/${columnId}/tasks`,
+      {
+        headers: new HttpHeaders({
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+      }
+    );
+  }
+
+  public createTask(
+    formData: IPostTasks,
+    token: string,
+    columnId: string
+  ): Observable<IPostTasks> {
+    return this.http.post<IPostTasks>(
+      `${BASE_URL}boards/${this.currentBoardId}/columns/${columnId}/tasks`,
+      formData,
+      {
+        headers: new HttpHeaders({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+      }
+    );
+  }
+
+  public getColumn(columnId: string, token: string): Observable<IColumns> {
+    return this.http.get<IColumns>(
+      `${BASE_URL}boards/${this.currentBoardId}/columns/${columnId}`,
+      {
+        headers: new HttpHeaders({
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+      }
+    );
+  }
+
+  public deleteColumn(columnId: string): Observable<IColumns> {
+    return this.http.delete<IColumns>(
+      `${BASE_URL}boards/${this.currentBoardId}/columns/${columnId}`
+    );
+  }
+
+  public getDataBoard(boardId: string, token: string): Observable<IResponse> {
+    return this.http.get<IResponse>(`${BASE_URL}boards/${boardId}`, {
+      headers: new HttpHeaders({
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      }),
+    });
+  }
+
+  public updateColumn(
+    formData: IPostColumns,
+    columnId: string,
+    token: string
+  ): Observable<IPostColumns> {
+    return this.http.put<IPostColumns>(
+      `${BASE_URL}boards/${this.currentBoardId}/columns/${columnId}`,
+      formData,
+      {
+        headers: new HttpHeaders({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+      }
+    );
   }
 }

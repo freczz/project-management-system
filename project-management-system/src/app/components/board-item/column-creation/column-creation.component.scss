@@ -1,0 +1,36 @@
+.mat-expansion-panel {
+  width: 300px;
+  background-color: #04030348;
+
+  ::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: transparent;
+    }
+
+    .white-theme {
+      color: white;
+    }
+
+    .mat-form-field {
+      width: 100%;
+      margin-top: 10px;
+
+      .mat-hint,
+      .title-input,
+      ::placeholder,
+      .mat-form-field-label {
+        color: none;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .btns-block {
+    display: flex;
+    justify-content: space-between;
+
+    .btn-submit {
+      background-color: #4682B4;
+    }
+  }
+}

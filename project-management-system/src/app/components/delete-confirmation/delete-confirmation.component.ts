@@ -25,7 +25,7 @@ export default class DeleteConfirmationComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store,
     private router: Router
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.token = this.store.selectSnapshot(PMSState.token);
