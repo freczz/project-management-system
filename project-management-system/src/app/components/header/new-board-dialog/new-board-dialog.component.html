@@ -4,13 +4,20 @@
     class="new_board__form"
     [formGroup]="newBoardForm"
     (ngSubmit)="createBoard({
-      title: newBoardForm.get('title')?.value
+      title: newBoardForm.get('title')?.value,
+      description: newBoardForm.get('description')?.value
     })"
   >
-    <div class="new_board__input">
+    <div class="new_board__input_title">
       <mat-form-field appearance="fill">
         <mat-label>Название</mat-label>
         <input matInput type="text" formControlName="title">
+      </mat-form-field>
+    </div>
+    <div class="new_board__input_description">
+      <mat-form-field appearance="fill">
+        <mat-label>Описание</mat-label>
+        <input matInput type="text" formControlName="description">
       </mat-form-field>
     </div>
     <div class="new_board__buttons">
