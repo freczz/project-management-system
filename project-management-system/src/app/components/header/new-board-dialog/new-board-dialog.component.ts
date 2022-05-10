@@ -15,6 +15,7 @@ import PMSState from 'src/app/store/pms.state';
 export default class NewBoardDialogComponent {
   public newBoardForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
   });
 
   private token: string = '';
@@ -39,6 +40,7 @@ export default class NewBoardDialogComponent {
 
   public validateFormFields(): void {
     this.newBoardForm.get('title')?.markAsTouched();
+    this.newBoardForm.get('description')?.markAsTouched();
   }
 
   public closeDialog(): void {

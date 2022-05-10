@@ -59,10 +59,7 @@ export default class HttpService {
     });
   }
 
-  public deleteBoard(
-    itemForDelete: string,
-    token: string
-  ): Observable<IItemToDelete> {
+  public deleteItem(token: string): Observable<IItemToDelete> {
     this.itemToDelete = JSON.parse(
       this.store.selectSnapshot(PMSState.itemToDelete)
     );

@@ -1,10 +1,10 @@
 import { IBoard, IItemToDelete, ITeam, IUser } from '../interfaces/interfaces';
 
-export const BASE_URL: string = 'https://frecero-pms.herokuapp.com/';
+export const BASE_URL: string = 'https://freczz-pms.herokuapp.com/';
 
 export const EMPTY_USER: IUser = { login: '', password: '' };
 
-export const EMPTY_BOARD: IBoard = { id: '', title: '' };
+export const EMPTY_BOARD: IBoard = { id: '', title: '', description: '' };
 
 export const EMPTY_ITEM_TO_DELETE: IItemToDelete = {
   title: '',

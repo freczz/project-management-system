@@ -23,15 +23,13 @@ export default class DeleteConfirmationComponent {
     private store: Store
   ) {}
 
-  public delete(): void {
+  public deleteBoard(): void {
     this.token = this.store.selectSnapshot(PMSState.token);
-    this.http
-      .deleteBoard(JSON.stringify(this.itemToDelete), this.token)
-      .subscribe((): void => {
-        this.http.getBoards(this.token).subscribe((boards: IBoard[]): void => {
-          this.store.dispatch(new SetBoards(JSON.stringify(boards)));
-        });
+    this.http.deleteItem(this.token).subscribe((): void => {
+      this.http.getBoards(this.token).subscribe((boards: IBoard[]): void => {
+        this.store.dispatch(new SetBoards(JSON.stringify(boards)));
       });
+    });
     this.dialog.closeAll();
   }
 

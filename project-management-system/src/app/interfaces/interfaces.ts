@@ -13,10 +13,12 @@ export interface IToken {
 export interface IBoard {
   id: string;
   title: string;
+  description: string;
 }
 
 export interface INewBoardFormData {
   title: string;
+  description: string;
 }
 
 export interface ITeam {
