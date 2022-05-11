@@ -1,0 +1,24 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+::ng-deep {
+  .mat-dialog-container {
+    width: 500px;
+    padding: 50px;
+    padding-bottom: 30px;
+  }
+}
+
+.form-submit {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  column-gap: 50px;
+
+  .mat-flat-button {
+    width: 150px;
+  }
+}
