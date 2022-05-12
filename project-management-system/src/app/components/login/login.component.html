@@ -1,0 +1,146 @@
+<section class="login blue-theme" *ngIf="isNewUser">
+  <div class="registration">
+    <h2 class="form-title">Registration</h2>
+    <form class="login-form" [formGroup]="registrationForm">
+      <mat-form-field appearance="outline">
+        <mat-label>name</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Enter your name"
+          formControlName="name"
+          [class.is-invalid]="
+            registrationForm.get('name')?.touched &&
+            registrationForm.get('name')?.errors"
+        />
+        <mat-error
+          *ngIf="
+            registrationForm.get('name')?.invalid &&
+            registrationForm.get('name')?.touched"
+        >
+          Please enter your name
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>mail</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Enter your mail"
+          name="mail"
+          formControlName="mail"
+          [class.is-invalid]="
+            registrationForm.get('mail')?.touched &&
+            registrationForm.get('mail')?.errors"
+        />
+        <mat-error *ngIf="registrationForm.get('mail')?.errors?.['required']">
+          Please enter email.
+        </mat-error>
+        <mat-error *ngIf="registrationForm.get('mail')?.errors?.['pattern']">
+          The email is invalid.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Enter your password"
+          name="password"
+          formControlName="password"
+          [class.is-invalid]="
+            registrationForm.get('password')?.touched &&
+            registrationForm.get('password')?.errors"
+        />
+        <mat-error
+          *ngIf="registrationForm.get('password')?.errors?.['required']">
+          Please enter a password.
+        </mat-error>
+        <mat-error
+          *ngIf="registrationForm.get('password')?.errors?.['pattern']">
+          Your password isn't strong enough (uppercase and lowercase letters,
+          numbers and special character).
+        </mat-error>
+      </mat-form-field>
+      <div class="form-submit">
+        <button
+          mat-button
+          color="primary"
+          (click)="isNewUser = false"
+        >
+          Go to login
+        </button>
+        <button
+          type="submit"
+          (click)="validateFormFields()"
+          mat-flat-button
+          color="primary"
+        >
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+<section class="login blue-theme" *ngIf="!isNewUser">
+  <div class="registration">
+    <h2 class="form-title">Login</h2>
+    <form class="login-form" [formGroup]="authForm">
+      <mat-form-field appearance="outline">
+        <mat-label>mail</mat-label>
+        <input
+          matInput
+          type="mail"
+          placeholder="Enter your mail"
+          formControlName="mail"
+          [class.is-invalid]="
+            authForm.get('mail')?.touched && authForm.get('mail')?.errors"
+        />
+        <mat-error *ngIf="authForm.get('mail')?.errors?.['required']">
+          Please enter a mail.
+        </mat-error>
+        <mat-error *ngIf="authForm.get('mail')?.errors?.['pattern']">
+          The mail is invalid
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Enter your password"
+          name="password"
+          formControlName="password"
+          [class.is-invalid]="
+            authForm.get('password')?.touched &&
+            authForm.get('password')?.errors"
+        />
+        <mat-error *ngIf="authForm.get('password')?.errors?.['required']">
+          Please enter a password.
+        </mat-error>
+        <mat-error *ngIf="authForm.get('password')?.errors?.['pattern']">
+          Your password isn't strong enough (uppercase and lowercase letters,
+          numbers and special character).
+        </mat-error>
+      </mat-form-field>
+      <div class="form-submit">
+        <button
+          mat-button
+          color="primary"
+          (click)="isNewUser = true"
+        >
+          Go to registration
+        </button>
+        <button
+          type="submit"
+          (click)="validateFormFields()"
+          mat-flat-button
+          color="primary"
+        >
+          login
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+

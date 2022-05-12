@@ -25,6 +25,7 @@ import DeleteConfirmationComponent from './components/delete-confirmation/delete
 import FooterComponent from './components/footer/footer.component';
 import WelcomeComponent from './components/welcome/welcome.component';
 import ErrorComponent from './components/error/error.component';
+import LoginComponent from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import ErrorComponent from './components/error/error.component';
     SearchPipe,
     WelcomeComponent,
     ErrorComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

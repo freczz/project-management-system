@@ -41,3 +41,9 @@ export interface IItemToDelete {
 export interface IStore {
   PMSState: IState;
 }
+
+export interface ILoginFormData {
+  mail: string;
+  password: string;
+  name?: string;
+}

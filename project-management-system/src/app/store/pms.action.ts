@@ -21,3 +21,9 @@ export class SetItemToDelete {
 
   constructor(public itemToDelete: string) {}
 }
+
+export class SetNewUserStatus {
+  static readonly type = '[PMS] Set new user status';
+
+  constructor(public isNewUser: boolean) {}
+}

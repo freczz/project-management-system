@@ -1,31 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import PMSState from 'src/app/store/pms.state';
-
-import environment from 'src/environments/environment';
 import { NgxsModule } from '@ngxs/store';
-import WelcomeComponent from './welcome.component';
+import PMSState from 'src/app/store/pms.state';
+import environment from 'src/environments/environment';
 
-describe('WelcomeComponent', () => {
-  let component: WelcomeComponent;
+import LoginComponent from './login.component';
 
-  let fixture: ComponentFixture<WelcomeComponent>;
+describe('LoginComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [WelcomeComponent],
+      declarations: [LoginComponent],
       imports: [
-        RouterTestingModule.withRoutes([]),
-        BrowserAnimationsModule,
+        ReactiveFormsModule,
         NgxsModule.forRoot([PMSState], {
           developmentMode: !environment.production,
         }),
       ],
-      providers: [{ provide: MatDialog, useValue: {} }],
+      providers: [{ provide: MatDialog }],
     }).compileComponents();
-    fixture = TestBed.createComponent(WelcomeComponent);
+    fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
