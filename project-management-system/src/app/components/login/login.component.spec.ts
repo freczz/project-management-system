@@ -32,7 +32,7 @@ describe('LoginComponent', () => {
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
-        MatRippleModule
+        MatRippleModule,
       ],
       providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();

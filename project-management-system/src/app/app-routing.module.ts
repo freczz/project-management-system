@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import MainComponent from './components/main/main.component';
 import WelcomeComponent from './components/welcome/welcome.component';
 import ErrorComponent from './components/error/error.component';
+import ProfileComponent from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -10,6 +11,7 @@ const routes: Routes = [
     path: 'welcome',
     component: WelcomeComponent,
   },
+  { path: 'profile', component: ProfileComponent },
   { path: 'error', component: ErrorComponent },
   { path: '**', redirectTo: '/error' },
 ];

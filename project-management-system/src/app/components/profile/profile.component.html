@@ -1,0 +1,85 @@
+<section class="profile">
+  <h2 class="profile__title">Edit Profile</h2>
+  <form
+    class="profile__form"
+    [formGroup]="editProfileForm"
+    (ngSubmit)="editProfile({
+      name: editProfileForm.get('name')?.value,
+      login: editProfileForm.get('login')?.value,
+      password: editProfileForm.get('password')?.value
+    })"
+  >
+    <div class="profile__input_name">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="name"
+          [value]="userData.name"
+        >
+        <mat-error
+          *ngIf="
+            editProfileForm.get('name')?.invalid &&
+            editProfileForm.get('name')?.touched"
+        >
+          Please enter your name
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="profile__input_login">
+      <mat-form-field appearance="fill">
+        <mat-label>Login</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="login"
+          [value]="userData.login"
+        >
+        <mat-error *ngIf="editProfileForm.get('login')?.errors?.['required']">
+          Please enter email.
+        </mat-error>
+        <mat-error *ngIf="editProfileForm.get('login')?.errors?.['pattern']">
+          The email is invalid.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="profile__input_password">
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+        >
+        <mat-error
+          *ngIf="editProfileForm.get('password')?.errors?.['required']">
+          Please enter a password.
+        </mat-error>
+        <mat-error
+          *ngIf="editProfileForm.get('password')?.errors?.['pattern']">
+          Your password isn't strong enough (uppercase and lowercase letters,
+          numbers and special character).
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="profile__buttons">
+      <div class="profile__delete">
+        <button
+          mat-raised-button
+          color="success"
+          (click)="openDialog()"
+        >Delete</button>
+      </div>
+      <div class="profile__submit">
+        <button
+          mat-raised-button
+          color="success"
+          type="submit"
+          (click)="validateFormFields()"
+        >Edit</button>
+      </div>
+    </div>
+  </form>
+</section>
+

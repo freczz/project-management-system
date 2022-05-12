@@ -1,5 +1,5 @@
 <section class="delete">
-  <h2 class="delete__title">Удалить доску</h2>
+  <h2 class="delete__title">Delete {{itemTitle}}?</h2>
   <p class="delete__name">{{itemToDelete.title}}</p>
   <div class="delete__buttons">
     <div class="delete__exit">
@@ -7,14 +7,14 @@
         mat-raised-button
         color="success"
         (click)="closeDialog()"
-      >Отмена</button>
+      >No</button>
     </div>
     <div class="delete__submit">
       <button
         mat-raised-button
         color="success"
-        (click)="deleteBoard()"
-      >Удалить</button>
+        (click)="deleteItem()"
+      >Yes</button>
     </div>
   </div>
 </section>

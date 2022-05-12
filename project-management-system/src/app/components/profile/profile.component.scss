@@ -1,0 +1,83 @@
+.profile {
+  background: #d5bda5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .profile__title {
+    font-size: 24px;
+    color: #211c1a;
+  }
+
+  .profile__form {
+    width: 400px;
+    margin-top: 40px;
+
+    .profile__input_name,
+    .profile__input_login,
+    .profile__input_password {
+      margin-top: 10px;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    mat-form-field {
+      width: 360px;
+    }
+
+    mat-label {
+      color: #211c1a;
+    }
+
+    .mat-input-element {
+      color: #000;
+    }
+
+    ::ng-deep .mat-focused .mat-form-field-ripple {
+      color: #000;
+    }
+
+    ::ng-deep .mat-form-field-ripple  {
+      background-color: #000;
+    }
+
+    ::ng-deep .mat-form-field {
+      font-size: 14px;
+    }
+
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
+      background-color: #211c1a;
+    }
+
+    ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+      padding: 4px 0px;
+    }
+
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-label {
+      margin-top: -4px;
+    }
+
+    ::ng-deep .mat-form-field-label-wrapper {
+      top: -18px;
+    }
+
+    ::ng-deep input {
+      caret-color: #000;
+    }
+
+    input {
+      font-size: 16px;
+      position: relative;
+      bottom: 5px;
+    }
+
+    .profile__buttons {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
