@@ -4,6 +4,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgxsModule } from '@ngxs/store';
+import PMSState from 'src/app/store/pms.state';
+import environment from 'src/environments/environment';
 
 import HeaderComponent from './header.component';
 
@@ -19,6 +23,10 @@ describe('HeaderComponent', () => {
         MatButtonToggleModule,
         MatInputModule,
         BrowserAnimationsModule,
+        NgxsModule.forRoot([PMSState], {
+          developmentMode: !environment.production,
+        }),
+        RouterTestingModule.withRoutes([]),
       ],
       providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();

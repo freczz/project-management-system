@@ -1,14 +1,13 @@
 import { State, Selector, Action, StateContext } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { IState } from './pms.interface';
-import { SetAuthorisedStatus, SetToken, SetBoards, SetItemToDelete, SetNewUserStatus } from './pms.action';
+import { SetToken, SetBoards, SetItemToDelete, SetNewUserStatus } from './pms.action';
 
 const initialState: IState = {
-  isAuthorised: false,
   token: '',
   boards: '[]',
   itemToDelete: '',
-  isNewUser: false
+  isNewUser: false,
 };
 
 @State<IState>({
@@ -17,16 +16,6 @@ const initialState: IState = {
 })
 @Injectable()
 class PMSState {
-  @Action(SetAuthorisedStatus)
-  private setAuthorisedStatus(
-    { patchState }: StateContext<IState>,
-    action: SetAuthorisedStatus
-  ) {
-    patchState({
-      isAuthorised: action.isAuthorised,
-    });
-  }
-
   @Action(SetToken)
   private setToken(
     { patchState }: StateContext<IState>,
@@ -68,16 +57,6 @@ class PMSState {
   }
 
   @Selector()
-  public static SetNewUserStatus(state: IState): boolean {
-    return state.isNewUser;
-  }
-
-  @Selector()
-  public static authorisedStatus(state: IState): boolean {
-    return state.isAuthorised;
-  }
-
-  @Selector()
   public static token(state: IState): string {
     return state.token;
   }
@@ -90,6 +69,11 @@ class PMSState {
   @Selector()
   public static itemToDelete(state: IState): string {
     return state.itemToDelete;
+  }
+
+  @Selector()
+  public static isNewUser(state: IState): boolean {
+    return state.isNewUser;
   }
 }
 

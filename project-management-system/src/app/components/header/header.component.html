@@ -8,10 +8,10 @@
             mat-raised-button
             color="success"
             (click)="openDialog()"
-          >Новая доска</button>
+          >New Board</button>
         </div>
         <div class="header__button_profile">
-          <button mat-raised-button color="success">Профиль</button>
+          <button mat-raised-button color="success">Edit Profile</button>
         </div>
       </div>
         <div class="header__right">
@@ -26,7 +26,11 @@
             </mat-button-toggle-group>
           </div>
           <div class="header__button_logout">
-            <button mat-raised-button color="success">Выход</button>
+            <button
+              mat-raised-button
+              color="success"
+              (click)="logout()"
+            >Logout</button>
           </div>
         </div>
     </div>

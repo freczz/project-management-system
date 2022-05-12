@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { EMPTY_USER } from 'src/app/constants/constants';
-import { IBoard, IStore, IToken, IUser } from 'src/app/interfaces/interfaces';
+import { IBoard, IStore } from 'src/app/interfaces/interfaces';
 import HttpService from 'src/app/services/http.service';
 import { SetBoards, SetToken } from 'src/app/store/pms.action';
 import PMSState from 'src/app/store/pms.state';
@@ -18,26 +18,37 @@ export default class MainComponent implements OnInit {
 
   private token: string = '';
 
-  constructor(private http: HttpService, private store: Store) {}
+  constructor(
+    private http: HttpService,
+    private store: Store,
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.token = this.store.selectSnapshot(PMSState.token);
+    if (!this.token) {
+      this.goToWelcomePage();
+    }
     this.store.subscribe((store: IStore): void => {
       this.items = JSON.parse(store.PMSState.boards);
     });
+    this.http.getBoards().subscribe(
+      (boards: IBoard[]): void => {
+        this.store.dispatch(new SetBoards(JSON.stringify(boards)));
+      },
+      (): void => {
+        this.store.dispatch(new SetToken(''));
+        this.store.dispatch(new SetBoards('[]'));
+        this.goToWelcomePage();
+      }
+    );
+  }
+
+  private goToWelcomePage(): void {
+    this.router.navigate(['/welcome']);
   }
 
   public changeSearchValue(e: Event): void {
     this.searchValue = (e.target as HTMLInputElement).value;
-  }
-
-  public signIn(): void {
-    this.http.signIn(EMPTY_USER).subscribe((data: IToken | IUser): void => {
-      this.store.dispatch(new SetToken((data as IToken).token));
-      this.token = this.store.selectSnapshot(PMSState.token);
-      this.http.getBoards(this.token).subscribe((boards: IBoard[]): void => {
-        this.store.dispatch(new SetBoards(JSON.stringify(boards)));
-      });
-    });
   }
 }

@@ -1,7 +1,15 @@
 <section class="login blue-theme" *ngIf="isNewUser">
   <div class="registration">
     <h2 class="form-title">Registration</h2>
-    <form class="login-form" [formGroup]="registrationForm">
+    <form
+      class="login-form"
+      [formGroup]="registrationForm"
+      (ngSubmit)="signUp({
+            name: registrationForm.get('name')?.value,
+            login: registrationForm.get('login')?.value,
+            password: registrationForm.get('password')?.value
+          })"
+    >
       <mat-form-field appearance="outline">
         <mat-label>name</mat-label>
         <input
@@ -12,6 +20,7 @@
           [class.is-invalid]="
             registrationForm.get('name')?.touched &&
             registrationForm.get('name')?.errors"
+          (input)="clearErrorMessage()"
         />
         <mat-error
           *ngIf="
@@ -27,16 +36,17 @@
           matInput
           type="email"
           placeholder="Enter your mail"
-          name="mail"
-          formControlName="mail"
+          name="login"
+          formControlName="login"
           [class.is-invalid]="
-            registrationForm.get('mail')?.touched &&
-            registrationForm.get('mail')?.errors"
+            registrationForm.get('login')?.touched &&
+            registrationForm.get('login')?.errors"
+          (input)="clearErrorMessage()"
         />
-        <mat-error *ngIf="registrationForm.get('mail')?.errors?.['required']">
+        <mat-error *ngIf="registrationForm.get('login')?.errors?.['required']">
           Please enter email.
         </mat-error>
-        <mat-error *ngIf="registrationForm.get('mail')?.errors?.['pattern']">
+        <mat-error *ngIf="registrationForm.get('login')?.errors?.['pattern']">
           The email is invalid.
         </mat-error>
       </mat-form-field>
@@ -51,6 +61,7 @@
           [class.is-invalid]="
             registrationForm.get('password')?.touched &&
             registrationForm.get('password')?.errors"
+          (input)="clearErrorMessage()"
         />
         <mat-error
           *ngIf="registrationForm.get('password')?.errors?.['required']">
@@ -66,7 +77,7 @@
         <button
           mat-button
           color="primary"
-          (click)="isNewUser = false"
+          (click)="toggleAuthForm()"
         >
           Go to login
         </button>
@@ -81,25 +92,36 @@
       </div>
     </form>
   </div>
+  <div class="login-error" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
 </section>
 <section class="login blue-theme" *ngIf="!isNewUser">
   <div class="registration">
     <h2 class="form-title">Login</h2>
-    <form class="login-form" [formGroup]="authForm">
+    <form
+      class="login-form"
+      [formGroup]="authForm"
+      (ngSubmit)="getToken({
+            login: authForm.get('login')?.value,
+            password: authForm.get('password')?.value
+          })"
+    >
       <mat-form-field appearance="outline">
         <mat-label>mail</mat-label>
         <input
           matInput
           type="mail"
           placeholder="Enter your mail"
-          formControlName="mail"
+          formControlName="login"
           [class.is-invalid]="
-            authForm.get('mail')?.touched && authForm.get('mail')?.errors"
+            authForm.get('login')?.touched && authForm.get('login')?.errors"
+          (input)="clearErrorMessage()"
         />
-        <mat-error *ngIf="authForm.get('mail')?.errors?.['required']">
+        <mat-error *ngIf="authForm.get('login')?.errors?.['required']">
           Please enter a mail.
         </mat-error>
-        <mat-error *ngIf="authForm.get('mail')?.errors?.['pattern']">
+        <mat-error *ngIf="authForm.get('login')?.errors?.['pattern']">
           The mail is invalid
         </mat-error>
       </mat-form-field>
@@ -114,6 +136,7 @@
           [class.is-invalid]="
             authForm.get('password')?.touched &&
             authForm.get('password')?.errors"
+          (input)="clearErrorMessage()"
         />
         <mat-error *ngIf="authForm.get('password')?.errors?.['required']">
           Please enter a password.
@@ -127,7 +150,7 @@
         <button
           mat-button
           color="primary"
-          (click)="isNewUser = true"
+          (click)="toggleAuthForm()"
         >
           Go to registration
         </button>
@@ -137,10 +160,13 @@
           mat-flat-button
           color="primary"
         >
-          login
+          Login
         </button>
       </div>
     </form>
+  </div>
+  <div class="login-error" *ngIf="errorMessage">
+    {{errorMessage}}
   </div>
 </section>
 

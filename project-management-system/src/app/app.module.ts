@@ -10,7 +10,7 @@ import environment from 'src/environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import AppRoutingModule from './app-routing.module';
 import PMSState from './store/pms.state';
@@ -26,6 +26,7 @@ import FooterComponent from './components/footer/footer.component';
 import WelcomeComponent from './components/welcome/welcome.component';
 import ErrorComponent from './components/error/error.component';
 import LoginComponent from './components/login/login.component';
+import ResponseInterceptor from './services/response.interceptor';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,9 @@ import LoginComponent from './components/login/login.component';
     MatButtonToggleModule,
     MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

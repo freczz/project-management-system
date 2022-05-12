@@ -7,7 +7,7 @@ export const EMPTY_USER: IUser = { login: '', password: '' };
 export const EMPTY_BOARD: IBoard = { id: '', title: '', description: '' };
 
 export const EMAIL_PATTERN: string =
-  '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+  '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z.]{2,}$';
 
 export const EMPTY_ITEM_TO_DELETE: IItemToDelete = {
   title: '',
@@ -23,8 +23,14 @@ export const PASSWORD_PATTERN: string =
 export const team: ITeam[] = [
   {
     imgLink: '../../../assets/jpg/alexey.jpg',
-    firstName: 'Алексей',
-    lastName: 'Виринский',
+    firstName: {
+      en: 'Alexey',
+      ru: 'Алексей',
+    },
+    lastName: {
+      en: 'Virinskiy',
+      ru: 'Виринский',
+    },
     githubLink: 'https://github.com/freczz',
     githubName: 'freczz',
     status: 'Team lead',
@@ -32,8 +38,14 @@ export const team: ITeam[] = [
   },
   {
     imgLink: '../../../assets/jpg/artur.jpg',
-    firstName: 'Артур',
-    lastName: 'Метельский',
+    firstName: {
+      en: 'Artur',
+      ru: 'Артур',
+    },
+    lastName: {
+      en: 'Metelskiy',
+      ru: 'Метельский',
+    },
     githubLink: 'https://github.com/ARTVVR',
     githubName: 'ARTVVR',
     status: 'Developer',
@@ -41,8 +53,14 @@ export const team: ITeam[] = [
   },
   {
     imgLink: '../../../assets/jpg/vladislav.jpg',
-    firstName: 'Владислав',
-    lastName: 'Кочерга',
+    firstName: {
+      en: 'Vladislav',
+      ru: 'Владислав',
+    },
+    lastName: {
+      en: 'Kocherga',
+      ru: 'Кочерга',
+    },
     githubLink: 'https://github.com/VladKocherga',
     githubName: 'VladKocherga',
     status: 'Developer',

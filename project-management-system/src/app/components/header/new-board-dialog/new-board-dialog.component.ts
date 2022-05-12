@@ -29,8 +29,8 @@ export default class NewBoardDialogComponent {
   public createBoard(formData: INewBoardFormData): void {
     if (this.newBoardForm.valid) {
       this.token = this.store.selectSnapshot(PMSState.token);
-      this.http.createBoard(formData, this.token).subscribe((): void => {
-        this.http.getBoards(this.token).subscribe((boards: IBoard[]): void => {
+      this.http.createBoard(formData).subscribe((): void => {
+        this.http.getBoards().subscribe((boards: IBoard[]): void => {
           this.store.dispatch(new SetBoards(JSON.stringify(boards)));
         });
       });
