@@ -23,12 +23,17 @@ export interface INewBoardFormData {
 
 export interface ITeam {
   imgLink: string;
-  firstName: string;
-  lastName: string;
+  firstName: ITeamLangs;
+  lastName: ITeamLangs;
   githubLink: string;
   status: string;
   githubName: string;
   tasks: string[];
+}
+
+export interface ITeamLangs {
+  en: string;
+  ru: string;
 }
 
 export interface IItemToDelete {
@@ -40,10 +45,4 @@ export interface IItemToDelete {
 
 export interface IStore {
   PMSState: IState;
-}
-
-export interface ILoginFormData {
-  mail: string;
-  password: string;
-  name?: string;
 }

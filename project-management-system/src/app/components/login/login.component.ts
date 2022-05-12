@@ -1,11 +1,17 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import {
   EMAIL_PATTERN,
   PASSWORD_MIN_LENGTH,
   PASSWORD_PATTERN,
 } from 'src/app/constants/constants';
+import { IToken, IUser } from 'src/app/interfaces/interfaces';
+import httpService from 'src/app/services/http.service';
+import { SetToken } from 'src/app/store/pms.action';
 import PMSState from 'src/app/store/pms.state';
 
 @Component({
@@ -18,7 +24,7 @@ export default class LoginComponent {
 
   public registrationForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    mail: new FormControl('', [
+    login: new FormControl('', [
       Validators.required,
       Validators.pattern(EMAIL_PATTERN),
     ]),
@@ -30,7 +36,7 @@ export default class LoginComponent {
   });
 
   public authForm: FormGroup = new FormGroup({
-    mail: new FormControl('', [
+    login: new FormControl('', [
       Validators.required,
       Validators.pattern(EMAIL_PATTERN),
     ]),
@@ -41,12 +47,66 @@ export default class LoginComponent {
     ]),
   });
 
-  constructor(private store: Store) {
-    this.isNewUser = this.store.selectSnapshot(PMSState.SetNewUserStatus);
+  private token: string = '';
+
+  public errorMessage: string = '';
+
+  constructor(
+    private store: Store,
+    private http: httpService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {
+    this.isNewUser = this.store.selectSnapshot(PMSState.isNewUser);
+  }
+
+  public getToken(formData: IUser): void {
+    if (this.registrationForm.valid || this.authForm.valid) {
+      this.http.signIn(formData).subscribe(
+        (data: IToken | IUser) => {
+          this.store.dispatch(new SetToken((data as IToken).token));
+          this.store.dispatch(new SetToken((data as IToken).token));
+          this.token = this.store.selectSnapshot(PMSState.token);
+          this.router.navigate(['/']);
+          this.dialog.closeAll();
+        },
+        (err: HttpErrorResponse): void => {
+          this.errorMessage = err.error.message;
+        }
+      );
+    }
+  }
+
+  public signUp(formData: IUser): void {
+    if (this.registrationForm.valid || this.authForm.valid) {
+      this.http.signUp(formData).subscribe(
+        (): void => {
+          this.getToken({
+            login: formData.login,
+            password: formData.password,
+          });
+        },
+        (err: HttpErrorResponse): void => {
+          this.errorMessage = err.error.message;
+        }
+      );
+    }
+  }
+
+  public clearErrorMessage(): void {
+    this.errorMessage = '';
+  }
+
+  public toggleAuthForm(): void {
+    this.isNewUser = !this.isNewUser;
+    this.authForm.reset();
+    this.registrationForm.reset();
+    this.errorMessage = '';
   }
 
   public validateFormFields(): void {
     this.registrationForm.get('name')?.markAsTouched();
+    this.registrationForm.get('name')?.markAsUntouched();
     this.registrationForm.get('mail')?.markAsTouched();
     this.registrationForm.get('password')?.markAsTouched();
     this.authForm.get('mail')?.markAsTouched();

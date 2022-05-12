@@ -25,8 +25,8 @@ export default class DeleteConfirmationComponent {
 
   public deleteBoard(): void {
     this.token = this.store.selectSnapshot(PMSState.token);
-    this.http.deleteItem(this.token).subscribe((): void => {
-      this.http.getBoards(this.token).subscribe((boards: IBoard[]): void => {
+    this.http.deleteItem().subscribe((): void => {
+      this.http.getBoards().subscribe((boards: IBoard[]): void => {
         this.store.dispatch(new SetBoards(JSON.stringify(boards)));
       });
     });

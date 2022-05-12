@@ -30,7 +30,8 @@ export default class MainItemComponent implements OnInit {
       this.store.selectSnapshot(PMSState.boards)
     );
     this.boardToDelete.title =
-      (e.currentTarget as HTMLElement).parentElement?.title || '';
+      (e.currentTarget as HTMLElement).parentElement?.parentElement?.title ||
+      '';
     this.boardToDelete.boardId =
       boards.find((board: IBoard) => board.title === this.boardToDelete.title)
         ?.id || '';

@@ -5,12 +5,14 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { team } from 'src/app/constants/constants';
 import { ITeam } from 'src/app/interfaces/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { SetNewUserStatus } from 'src/app/store/pms.action';
+import { Router } from '@angular/router';
+import PMSState from 'src/app/store/pms.state';
 import LoginComponent from '../login/login.component';
 
 @Component({
@@ -24,12 +26,25 @@ import LoginComponent from '../login/login.component';
     ]),
   ],
 })
-export default class WelcomeComponent {
+export default class WelcomeComponent implements OnInit {
   public state: string = 'initial';
 
   public team: ITeam[] = team;
 
-  constructor(public dialog: MatDialog, private store: Store) {}
+  private token: string = '';
+
+  constructor(
+    public dialog: MatDialog,
+    private store: Store,
+    private router: Router
+  ) {}
+
+  public ngOnInit(): void {
+    this.token = this.store.selectSnapshot(PMSState.token);
+    if (this.token) {
+      this.router.navigate(['/']);
+    }
+  }
 
   public openDialog(isNewUser: boolean): void {
     this.store.dispatch(new SetNewUserStatus(isNewUser));
