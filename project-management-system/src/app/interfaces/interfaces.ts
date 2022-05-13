@@ -6,6 +6,13 @@ export interface IUser {
   name?: string;
 }
 
+export interface IUserData {
+  id: string;
+  name: string;
+  login: string;
+  password: string;
+}
+
 export interface IToken {
   token: string;
 }
@@ -19,6 +26,12 @@ export interface IBoard {
 export interface INewBoardFormData {
   title: string;
   description: string;
+}
+
+export interface IEditProfileFormData {
+  name: string;
+  login: string;
+  password: string;
 }
 
 export interface ITeam {
@@ -37,6 +50,7 @@ export interface ITeamLangs {
 }
 
 export interface IItemToDelete {
+  userId: string;
   title: string;
   boardId: string;
   columnId: string;

@@ -13,6 +13,7 @@ import {
   SetItemToDelete,
   SetNewUserStatus,
   SetToken,
+  SetUserData,
 } from './store/pms.action';
 import PMSState from './store/pms.state';
 
@@ -40,7 +41,11 @@ export default class AppComponent implements OnInit {
     );
     window.localStorage.setItem(
       'isNewUser',
-      this.store.selectSnapshot(PMSState.isNewUser.toString())
+      this.store.selectSnapshot(PMSState.isNewUser).toString()
+    );
+    window.localStorage.setItem(
+      'userData',
+      this.store.selectSnapshot(PMSState.userData)
     );
   }
 
@@ -50,11 +55,13 @@ export default class AppComponent implements OnInit {
     const itemToDelete: string =
       window.localStorage.getItem('itemToDelete') ?? '';
     const isNewUser: string = window.localStorage.getItem('isNewUser') ?? '';
+    const userData: string = window.localStorage.getItem('userData') ?? '';
     window.localStorage.clear();
     this.store.dispatch(new SetToken(token));
     this.store.dispatch(new SetBoards(boards));
     this.store.dispatch(new SetItemToDelete(itemToDelete));
     this.store.dispatch(new SetNewUserStatus(isNewUser === 'true'));
+    this.store.dispatch(new SetUserData(userData));
   }
 
   public ngOnInit(): void {

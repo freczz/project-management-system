@@ -21,3 +21,9 @@ export class SetNewUserStatus {
 
   constructor(public isNewUser: boolean) {}
 }
+
+export class SetUserData {
+  static readonly type = '[PMS] Set user data';
+
+  constructor(public userData: string) {}
+}

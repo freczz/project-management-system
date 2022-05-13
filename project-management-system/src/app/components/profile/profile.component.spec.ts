@@ -1,30 +1,36 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxsModule } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
 import environment from 'src/environments/environment';
 
-import DeleteConfirmationComponent from './delete-confirmation.component';
+import ProfileComponent from './profile.component';
 
-describe('DeleteConfirmationComponent', () => {
-  let component: DeleteConfirmationComponent;
-  let fixture: ComponentFixture<DeleteConfirmationComponent>;
+describe('ProfileComponent', () => {
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DeleteConfirmationComponent],
+      declarations: [ProfileComponent],
       imports: [
         HttpClientTestingModule,
         NgxsModule.forRoot([PMSState], {
           developmentMode: !environment.production,
         }),
         RouterTestingModule.withRoutes([]),
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
       ],
       providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();
-    fixture = TestBed.createComponent(DeleteConfirmationComponent);
+    fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

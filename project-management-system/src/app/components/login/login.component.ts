@@ -11,7 +11,7 @@ import {
 } from 'src/app/constants/constants';
 import { IToken, IUser } from 'src/app/interfaces/interfaces';
 import httpService from 'src/app/services/http.service';
-import { SetToken } from 'src/app/store/pms.action';
+import { SetToken, SetUserData } from 'src/app/store/pms.action';
 import PMSState from 'src/app/store/pms.state';
 
 @Component({
@@ -65,7 +65,16 @@ export default class LoginComponent {
       this.http.signIn(formData).subscribe(
         (data: IToken | IUser) => {
           this.store.dispatch(new SetToken((data as IToken).token));
-          this.store.dispatch(new SetToken((data as IToken).token));
+          this.store.dispatch(
+            new SetUserData(
+              JSON.stringify({
+                id: '',
+                name: '',
+                login: formData.login,
+                password: formData.password,
+              })
+            )
+          );
           this.token = this.store.selectSnapshot(PMSState.token);
           this.router.navigate(['/']);
           this.dialog.closeAll();

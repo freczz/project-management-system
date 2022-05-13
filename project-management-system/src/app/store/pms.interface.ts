@@ -3,4 +3,5 @@ export interface IState {
   boards: string;
   itemToDelete: string;
   isNewUser: boolean;
+  userData: string;
 }

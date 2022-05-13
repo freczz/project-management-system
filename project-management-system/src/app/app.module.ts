@@ -27,6 +27,7 @@ import WelcomeComponent from './components/welcome/welcome.component';
 import ErrorComponent from './components/error/error.component';
 import LoginComponent from './components/login/login.component';
 import ResponseInterceptor from './services/response.interceptor';
+import ProfileComponent from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import ResponseInterceptor from './services/response.interceptor';
     WelcomeComponent,
     ErrorComponent,
     LoginComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

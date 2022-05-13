@@ -1,8 +1,21 @@
-import { IBoard, IItemToDelete, ITeam, IUser } from '../interfaces/interfaces';
+import {
+  IBoard,
+  IItemToDelete,
+  ITeam,
+  IUser,
+  IUserData,
+} from '../interfaces/interfaces';
 
 export const BASE_URL: string = 'https://freczz-pms.herokuapp.com/';
 
 export const EMPTY_USER: IUser = { login: '', password: '' };
+
+export const EMPTY_USER_DATA: IUserData = {
+  id: '',
+  name: '',
+  login: '',
+  password: '',
+};
 
 export const EMPTY_BOARD: IBoard = { id: '', title: '', description: '' };
 
@@ -10,6 +23,7 @@ export const EMAIL_PATTERN: string =
   '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z.]{2,}$';
 
 export const EMPTY_ITEM_TO_DELETE: IItemToDelete = {
+  userId: '',
   title: '',
   boardId: '',
   columnId: '',
@@ -67,3 +81,10 @@ export const team: ITeam[] = [
     tasks: [''],
   },
 ];
+
+export enum ItemTitle {
+  user = 'the user',
+  board = 'the board',
+  column = 'the column',
+  task = 'the task',
+}

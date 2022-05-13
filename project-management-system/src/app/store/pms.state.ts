@@ -1,13 +1,14 @@
 import { State, Selector, Action, StateContext } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { IState } from './pms.interface';
-import { SetToken, SetBoards, SetItemToDelete, SetNewUserStatus } from './pms.action';
+import { SetToken, SetBoards, SetItemToDelete, SetNewUserStatus, SetUserData } from './pms.action';
 
 const initialState: IState = {
-  token: '',
+  token: '{}',
   boards: '[]',
-  itemToDelete: '',
+  itemToDelete: '{}',
   isNewUser: false,
+  userData: '{}',
 };
 
 @State<IState>({
@@ -56,6 +57,16 @@ class PMSState {
     });
   }
 
+  @Action(SetUserData)
+  private setUserData(
+    { patchState }: StateContext<IState>,
+    action: SetUserData
+  ) {
+    patchState({
+      userData: action.userData,
+    });
+  }
+
   @Selector()
   public static token(state: IState): string {
     return state.token;
@@ -74,6 +85,11 @@ class PMSState {
   @Selector()
   public static isNewUser(state: IState): boolean {
     return state.isNewUser;
+  }
+
+  @Selector()
+  public static userData(state: IState): string {
+    return state.userData;
   }
 }
 

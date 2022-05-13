@@ -7,8 +7,8 @@ import { NgxsModule } from '@ngxs/store';
 import SearchPipe from 'src/app/pipes/search.pipe';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import MainComponent from './main.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import MainComponent from './main.component';
 
 describe('MainComponent', () => {
   let component: MainComponent;

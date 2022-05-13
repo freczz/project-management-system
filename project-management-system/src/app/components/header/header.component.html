@@ -2,16 +2,21 @@
   <div class="header__top">
     <div class="header__container">
       <div class="header__left">
-        <h1 class="header__title">PMS</h1>
+        <h1 class="header__title">
+          <a routerLink="">PMS</a></h1>
         <div class="header__button_board">
           <button
             mat-raised-button
             color="success"
-            (click)="openDialog()"
+            (click)="openNewBoardDialog()"
           >New Board</button>
         </div>
         <div class="header__button_profile">
-          <button mat-raised-button color="success">Edit Profile</button>
+          <button
+            mat-raised-button
+            color="success"
+            routerLink="/profile"
+          >Edit Profile</button>
         </div>
       </div>
         <div class="header__right">
