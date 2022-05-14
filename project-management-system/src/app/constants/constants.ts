@@ -50,8 +50,20 @@ export const team: ITeam[] = [
     },
     githubLink: 'https://github.com/freczz',
     githubName: 'freczz',
-    status: 'Team lead',
-    tasks: [''],
+    status: {
+      en: 'Team lead',
+      ru: 'Лидер Команды',
+    },
+    tasks: [
+      {
+        en: 'Main Page',
+        ru: 'Главная Страница',
+      },
+      {
+        en: 'Authorization',
+        ru: 'Авторизация',
+      },
+    ],
   },
   {
     imgLink: '../../../assets/jpg/artur.jpg',
@@ -65,8 +77,16 @@ export const team: ITeam[] = [
     },
     githubLink: 'https://github.com/ARTVVR',
     githubName: 'ARTVVR',
-    status: 'Developer',
-    tasks: [''],
+    status: {
+      en: 'Developer',
+      ru: 'Разработчик',
+    },
+    tasks: [
+      {
+        en: 'Board Page',
+        ru: 'Страница Доски',
+      },
+    ],
   },
   {
     imgLink: '../../../assets/jpg/vladislav.jpg',
@@ -80,8 +100,16 @@ export const team: ITeam[] = [
     },
     githubLink: 'https://github.com/VladKocherga',
     githubName: 'VladKocherga',
-    status: 'Developer',
-    tasks: [''],
+    status: {
+      en: 'Developer',
+      ru: 'Разработчик',
+    },
+    tasks: [
+      {
+        en: 'Welcome Page',
+        ru: 'Страница Приветствия',
+      },
+    ],
   },
 ];
 

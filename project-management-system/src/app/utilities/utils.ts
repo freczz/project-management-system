@@ -1,11 +1,10 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { INITIAL_ORDER } from '../constants/constants';
 import { IBoard, IColumns, ITasks } from '../interfaces/interfaces';
 
-export default function filterItems(
-  items: IBoard[],
-  searchValue: string
-): IBoard[] {
+export function filterItems(items: IBoard[], searchValue: string): IBoard[] {
   return searchValue
     ? items.filter(
         (item: IBoard): boolean =>
@@ -28,4 +27,8 @@ export function setNewOrder(data: IColumns[] | ITasks[]): number {
     max += Math.round(v.order / 2);
   });
   return max;
+}
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

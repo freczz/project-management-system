@@ -1,5 +1,5 @@
 <section class="profile">
-  <h2 class="profile__title">Edit Profile</h2>
+  <h2 class="profile__title">{{ 'HEADER.EDIT_PROFILE.TITLE' | translate }}</h2>
   <form
     class="profile__form"
     [formGroup]="editProfileForm"
@@ -11,10 +11,11 @@
   >
     <div class="profile__input_name">
       <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
+        <mat-label>{{ 'HEADER.EDIT_PROFILE.LABELS.NAME' | translate }}</mat-label>
         <input
           matInput
           type="text"
+          [placeholder]="'HEADER.EDIT_PROFILE.PLACEHOLDERS.NAME' | translate"
           formControlName="name"
           [value]="userData.name"
         />
@@ -24,50 +25,54 @@
             editProfileForm.get('name')?.touched
           "
         >
-          Please enter your name
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.NAME.REQUIRED' | translate }}
         </mat-error>
       </mat-form-field>
     </div>
     <div class="profile__input_login">
       <mat-form-field appearance="fill">
-        <mat-label>Login</mat-label>
+        <mat-label>{{ 'HEADER.EDIT_PROFILE.LABELS.LOGIN' | translate }}</mat-label>
         <input
           matInput
           type="text"
+          [placeholder]="'HEADER.EDIT_PROFILE.PLACEHOLDERS.LOGIN' | translate"
           formControlName="login"
           [value]="userData.login"
         />
         <mat-error *ngIf="editProfileForm.get('login')?.errors?.['required']">
-          Please enter email.
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.LOGIN.REQUIRED' | translate }}
         </mat-error>
         <mat-error *ngIf="editProfileForm.get('login')?.errors?.['pattern']">
-          The email is invalid.
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.LOGIN.PATTERN' | translate }}
         </mat-error>
       </mat-form-field>
     </div>
     <div class="profile__input_password">
       <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
+        <mat-label>{{ 'HEADER.EDIT_PROFILE.LABELS.PASSWORD' | translate }}</mat-label>
         <input
           matInput
           type="password"
+          [placeholder]="'HEADER.EDIT_PROFILE.PLACEHOLDERS.PASSWORD' | translate"
           formControlName="password"
         >
         <mat-error
-          *ngIf="editProfileForm.get('password')?.errors?.['required']"
-        >
-          Please enter a password.
+          *ngIf="editProfileForm.get('password')?.errors?.['required']">
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.PASSWORD.REQUIRED' | translate }}
         </mat-error>
-        <mat-error *ngIf="editProfileForm.get('password')?.errors?.['pattern']">
-          Your password isn't strong enough (uppercase and lowercase letters,
-          numbers and special character).
+        <mat-error
+          *ngIf="editProfileForm.get('password')?.errors?.['pattern']">
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.PASSWORD.PATTERN' | translate }}
         </mat-error>
       </mat-form-field>
     </div>
     <div class="profile__buttons">
       <div class="profile__delete">
-        <button mat-raised-button color="success" (click)="openDialog()"
-        >Delete</button>
+        <button
+          mat-raised-button
+          color="success"
+          (click)="openDialog()"
+        >{{ 'HEADER.EDIT_PROFILE.DELETE' | translate }}</button>
       </div>
       <div class="profile__submit">
         <button
@@ -75,7 +80,7 @@
           color="success"
           type="submit"
           (click)="validateFormFields()"
-        >Edit</button>
+        >{{ 'HEADER.EDIT_PROFILE.SUBMIT' | translate }}</button>
       </div>
     </div>
   </form>

@@ -1,0 +1,114 @@
+{
+  "DELETE": {
+    "TITLE": "Delete?",
+    "NO": "No",
+    "YES": "Yes"
+  },
+  "ERROR": {
+    "TITLE": "Error 404",
+    "DESCRIPTION": "this page is not found"
+  },
+  "FOOTER": {
+    "NAME": "{{firstNameEn}} {{lastNameEn}}"
+  },
+  "HEADER": {
+    "NEW_BOARD": {
+      "TITLE": "New Board",
+      "LABELS": {
+        "TITLE": "title",
+        "DESCRIPTION": "description"
+      },
+      "PLACEHOLDERS": {
+        "TITLE": "Enter title",
+        "DESCRIPTION": "Enter description"
+      },
+      "CANCEL": "Cancel",
+      "CREATE": "Create"
+    },
+    "EDIT_PROFILE": {
+      "TITLE": "Edit Profile",
+      "LABELS": {
+        "NAME": "name",
+        "LOGIN": "login",
+        "PASSWORD": "password"
+      },
+      "PLACEHOLDERS": {
+        "NAME": "Enter name",
+        "LOGIN": "Enter login",
+        "PASSWORD": "Enter password"
+      },
+      "ERRORS": {
+        "NAME": {
+          "REQUIRED": "Please enter your name"
+        },
+        "LOGIN": {
+          "REQUIRED": "Please enter email",
+          "PATTERN": "The email is invalid"
+        },
+        "PASSWORD": {
+          "REQUIRED": "Please enter password",
+          "PATTERN": "Your password isn't strong enough (uppercase and lowercase letters, numbers and special character)"
+        }
+      },
+      "DELETE": "Delete",
+      "SUBMIT": "Edit"
+    },
+    "LOGOUT": "Logout"
+  },
+  "LOGIN": {
+    "SIGN_UP": {
+      "TITLE": "Registration",
+      "TOGGLE": "Go to login",
+      "SUBMIT": "Register"
+    },
+    "SIGN_IN": {
+      "TITLE": "Login",
+      "TOGGLE": "Go to registration",
+      "SUBMIT": "Login"
+    },
+    "LABELS": {
+      "NAME": "name",
+      "LOGIN": "mail",
+      "PASSWORD": "password"
+    },
+    "PLACEHOLDERS": {
+      "NAME": "Enter your name",
+      "LOGIN": "Enter your mail",
+      "PASSWORD": "Enter your password"
+    },
+    "ERRORS": {
+      "NAME": {
+        "REQUIRED": "Please enter your name"
+      },
+      "LOGIN": {
+        "REQUIRED": "Please enter email",
+        "PATTERN": "The email is invalid"
+      },
+      "PASSWORD": {
+        "REQUIRED": "Please enter password",
+        "PATTERN": "Your password isn't strong enough (uppercase and lowercase letters, numbers and special character)"
+      },
+      "SERVER": {
+        "NOT_FOUND": "User not found",
+        "EXISTS": "User is already exists"
+      }
+    }
+  },
+  "MAIN": {
+    "TITLE": "Boards",
+    "SEARCH": "Search",
+    "DELETE": "Delete"
+  },
+  "WELCOME": {
+    "TITLE": "Project Management System",
+    "COURSE": "Angular course 2022",
+    "LOGIN": "Login",
+    "SIGN_UP": "Sign up",
+    "ABOUT_PROJECT": "About project:",
+    "DESCRIPTION": "A project management system is an application that helps an individual in a team or group of developers achieve their goals.",
+    "ABOUT_TEAM": "About us:",
+    "NAME": "{{nameEn}}",
+    "STATUS": "{{statusEn}}",
+    "TASKS": "{{taskEn}}"
+  }
+}

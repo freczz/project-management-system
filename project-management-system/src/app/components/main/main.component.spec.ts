@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import MainComponent from './main.component';
 
 describe('MainComponent', () => {
@@ -26,6 +27,7 @@ describe('MainComponent', () => {
         BrowserAnimationsModule,
         MatInputModule,
         RouterTestingModule.withRoutes([]),
+        TranslateModule.forRoot(),
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();

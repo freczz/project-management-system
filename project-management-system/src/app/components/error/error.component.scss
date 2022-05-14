@@ -23,7 +23,7 @@
     white-space: nowrap;
     border-right: solid 3px white;
     overflow: hidden;
-    animation: animated-text 3s steps(25) 1s 1 normal both, animated-cursor 600ms steps(25) infinite;
+    animation: animated-text 2s steps(25) 1s 1 normal both, animated-cursor 600ms steps(25) infinite;
   }
 }
 
@@ -33,7 +33,7 @@
   }
 
   to {
-    width: 365px;
+    width: 225px;
   }
 }
 

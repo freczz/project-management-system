@@ -6,9 +6,14 @@ import environment from 'src/environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import AppRoutingModule from './app-routing.module';
 import PMSState from './store/pms.state';
 
@@ -32,6 +37,7 @@ import TaskItemComponent from './components/board-item/task-column/task-item/tas
 import ModalEditFormComponent from './components/board-item/task-column/modal-edit-form/modal-edit-form.component';
 import ColumnsFilterPipe from './pipes/columns-filter.pipe';
 import ProfileComponent from './components/profile/profile.component';
+import { createTranslateLoader } from './utilities/utils';
 
 @NgModule({
   declarations: [
@@ -68,6 +74,14 @@ import ProfileComponent from './components/profile/profile.component';
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     MaterialModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'ru',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },

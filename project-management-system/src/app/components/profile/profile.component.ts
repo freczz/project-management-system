@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import {
   EMAIL_PATTERN,
@@ -38,11 +39,14 @@ export default class ProfileComponent implements OnInit {
 
   private token: string = '';
 
+  public currentLanguage: string = '';
+
   constructor(
     private http: HttpService,
     private dialog: MatDialog,
     private store: Store,
-    private router: Router
+    private router: Router,
+    public translate: TranslateService
   ) {}
 
   public ngOnInit(): void {
@@ -50,6 +54,8 @@ export default class ProfileComponent implements OnInit {
     this.token = this.store.selectSnapshot(PMSState.token);
     this.editProfileForm.get('name')?.setValue(this.userData.name);
     this.editProfileForm.get('login')?.setValue(this.userData.login);
+    this.currentLanguage = this.store.selectSnapshot(PMSState.currentLanguage);
+    this.translate.use(this.currentLanguage);
   }
 
   public editProfile(formData: IUser): void {

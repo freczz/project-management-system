@@ -2,11 +2,11 @@
 <section class="main">
   <div class="main__body">
     <div class="main__top">
-      <h2 class="main__title">Boards</h2>
+      <h2 class="main__title">{{ 'MAIN.TITLE' | translate }}</h2>
       <div class="main__search">
         <mat-form-field appearance="fill">
-          <mat-label>Search</mat-label>
-          <input matInput (input)="changeSearchValue($event)" />
+          <mat-label>{{ 'MAIN.SEARCH' | translate }}</mat-label>
+          <input matInput (input)="changeSearchValue($event)">
         </mat-form-field>
       </div>
     </div>

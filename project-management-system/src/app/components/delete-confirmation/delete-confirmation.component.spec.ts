@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxsModule } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
 import environment from 'src/environments/environment';
@@ -21,6 +22,7 @@ describe('DeleteConfirmationComponent', () => {
           developmentMode: !environment.production,
         }),
         RouterTestingModule.withRoutes([]),
+        TranslateModule.forRoot(),
       ],
       providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();

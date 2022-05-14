@@ -4,4 +4,5 @@ export interface IState {
   itemToDelete: string;
   isNewUser: boolean;
   userData: string;
+  currentLanguage: string;
 }

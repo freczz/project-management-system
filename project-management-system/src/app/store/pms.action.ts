@@ -27,3 +27,9 @@ export class SetUserData {
 
   constructor(public userData: string) {}
 }
+
+export class SetCurrentLanguage {
+  static readonly type = '[PMS] Set current language';
+
+  constructor(public currentLanguage: string) {}
+}

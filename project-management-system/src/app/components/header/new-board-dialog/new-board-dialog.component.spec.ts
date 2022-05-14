@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxsModule } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
 import environment from 'src/environments/environment';
@@ -27,6 +28,7 @@ describe('NewBoardDialogComponent', () => {
         MatInputModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
+        TranslateModule.forRoot(),
       ],
       providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();

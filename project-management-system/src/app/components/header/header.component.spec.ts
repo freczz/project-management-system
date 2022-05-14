@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxsModule } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
 import environment from 'src/environments/environment';
@@ -27,6 +28,7 @@ describe('HeaderComponent', () => {
           developmentMode: !environment.production,
         }),
         RouterTestingModule.withRoutes([]),
+        TranslateModule.forRoot(),
       ],
       providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();
