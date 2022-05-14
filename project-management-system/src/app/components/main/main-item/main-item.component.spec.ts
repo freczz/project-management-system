@@ -1,9 +1,7 @@
-import {
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxsModule } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
 import environment from 'src/environments/environment';
@@ -22,6 +20,7 @@ describe('MainItemComponent', () => {
           developmentMode: !environment.production,
         }),
         RouterModule.forRoot([]),
+        TranslateModule.forRoot(),
       ],
       providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();

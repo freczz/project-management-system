@@ -1,5 +1,7 @@
 <section class="new_board">
-  <h2 class="new_board__title">Создать доску</h2>
+  <h2 class="new_board__title">
+    {{ 'HEADER.NEW_BOARD.TITLE' | translate }}
+  </h2>
   <form
     class="new_board__form"
     [formGroup]="newBoardForm"
@@ -10,22 +12,24 @@
   >
     <div class="new_board__input_title">
       <mat-form-field appearance="fill">
-        <mat-label>Название</mat-label>
+        <mat-label>{{ 'HEADER.NEW_BOARD.LABELS.TITLE' | translate }}</mat-label>
         <input
           matInput
           type="text"
+          [placeholder]="'HEADER.NEW_BOARD.PLACEHOLDERS.TITLE' | translate"
           formControlName="title"
-        />
+        >
       </mat-form-field>
     </div>
     <div class="new_board__input_description">
       <mat-form-field appearance="fill">
-        <mat-label>Описание</mat-label>
+        <mat-label>{{ 'HEADER.NEW_BOARD.LABELS.DESCRIPTION' | translate }}</mat-label>
         <input
           matInput
           type="text"
+          [placeholder]="'HEADER.NEW_BOARD.PLACEHOLDERS.DESCRIPTION' | translate"
           formControlName="description"
-        />
+        >
       </mat-form-field>
     </div>
     <div class="new_board__buttons">
@@ -34,7 +38,7 @@
           mat-raised-button
           color="success"
           (click)="closeDialog()"
-        >Отмена</button>
+        >{{ 'HEADER.NEW_BOARD.CANCEL' | translate }}</button>
       </div>
       <div class="new_board__submit">
         <button
@@ -42,7 +46,7 @@
           color="success"
           type="submit"
           (click)="validateFormFields()"
-        >Создать</button>
+        >{{ 'HEADER.NEW_BOARD.CREATE' | translate }}</button>
       </div>
     </div>
   </form>

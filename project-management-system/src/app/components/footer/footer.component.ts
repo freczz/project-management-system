@@ -8,5 +8,5 @@ import { ITeam } from 'src/app/interfaces/interfaces';
   styleUrls: ['./footer.component.scss'],
 })
 export default class FooterComponent {
-  contacts: ITeam[] = team;
+  public contacts: ITeam[] = team;
 }

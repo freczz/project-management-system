@@ -10,35 +10,45 @@
             mat-raised-button
             color="success"
             (click)="openNewBoardDialog()"
-          >New Board</button>
+          >
+            {{ 'HEADER.NEW_BOARD.TITLE' | translate }}</button>
         </div>
         <div class="header__button_profile">
           <button
             mat-raised-button
             color="success"
             routerLink="/profile"
-          >Edit Profile</button>
+          >
+            {{ 'HEADER.EDIT_PROFILE.TITLE' | translate }}</button>
         </div>
       </div>
       <div class="header__right">
-        <div class="header__langs">
-          <mat-button-toggle-group
-            appearance="legacy"
-            name="lang"
-            aria-label="Lang"
-          >
-            <mat-button-toggle value="en">En</mat-button-toggle>
-            <mat-button-toggle value="ru">Ru</mat-button-toggle>
-          </mat-button-toggle-group>
+          <div class="header__langs">
+            <mat-button-toggle-group
+              appearance="legacy"
+              name="lang"
+              aria-label="Lang"
+              [value]="currentLanguage"
+            >
+              <mat-button-toggle
+                (click)="changeLanguage($event)"
+                value="en"
+              >En</mat-button-toggle>
+              <mat-button-toggle
+                (click)="changeLanguage($event)"
+                value="ru"
+              >Ru</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          <div class="header__button_logout">
+            <button
+              mat-raised-button
+              color="success"
+              (click)="logout()"
+            >
+              {{ 'HEADER.LOGOUT' | translate }}</button>
+          </div>
         </div>
-        <div class="header__button_logout">
-          <button
-            mat-raised-button
-            color="success"
-            (click)="logout()"
-          >Logout</button>
-        </div>
-      </div>
     </div>
   </div>
   <div class="header__bottom">

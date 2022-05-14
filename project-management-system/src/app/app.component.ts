@@ -10,6 +10,7 @@ import {
 import { Store } from '@ngxs/store';
 import {
   SetBoards,
+  SetCurrentLanguage,
   SetItemToDelete,
   SetNewUserStatus,
   SetToken,
@@ -47,21 +48,29 @@ export default class AppComponent implements OnInit {
       'userData',
       this.store.selectSnapshot(PMSState.userData)
     );
+    window.localStorage.setItem(
+      'currentLanguage',
+      this.store.selectSnapshot(PMSState.currentLanguage)
+    );
   }
 
   constructor(private router: Router, private store: Store) {
     const token: string = window.localStorage.getItem('token') ?? '';
     const boards: string = window.localStorage.getItem('boards') ?? '[]';
     const itemToDelete: string =
-      window.localStorage.getItem('itemToDelete') ?? '';
-    const isNewUser: string = window.localStorage.getItem('isNewUser') ?? '';
-    const userData: string = window.localStorage.getItem('userData') ?? '';
+      window.localStorage.getItem('itemToDelete') ?? '{}';
+    const isNewUser: string =
+      window.localStorage.getItem('isNewUser') ?? 'false';
+    const userData: string = window.localStorage.getItem('userData') ?? '{}';
+    const currentLanguage: string =
+      window.localStorage.getItem('currentLanguage') ?? 'en';
     window.localStorage.clear();
     this.store.dispatch(new SetToken(token));
     this.store.dispatch(new SetBoards(boards));
     this.store.dispatch(new SetItemToDelete(itemToDelete));
     this.store.dispatch(new SetNewUserStatus(isNewUser === 'true'));
     this.store.dispatch(new SetUserData(userData));
+    this.store.dispatch(new SetCurrentLanguage(currentLanguage));
   }
 
   public ngOnInit(): void {

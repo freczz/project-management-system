@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import {
   EMAIL_PATTERN,
@@ -19,7 +20,7 @@ import PMSState from 'src/app/store/pms.state';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export default class LoginComponent {
+export default class LoginComponent implements OnInit {
   public isNewUser: boolean = true;
 
   public registrationForm: FormGroup = new FormGroup({
@@ -51,13 +52,20 @@ export default class LoginComponent {
 
   public errorMessage: string = '';
 
+  private currentLanguage: string = 'en';
+
   constructor(
     private store: Store,
     private http: httpService,
     private router: Router,
-    private dialog: MatDialog
-  ) {
+    private dialog: MatDialog,
+    public translate: TranslateService
+  ) {}
+
+  public ngOnInit(): void {
     this.isNewUser = this.store.selectSnapshot(PMSState.isNewUser);
+    this.currentLanguage = this.store.selectSnapshot(PMSState.currentLanguage);
+    this.translate.use(this.currentLanguage);
   }
 
   public getToken(formData: IUser): void {

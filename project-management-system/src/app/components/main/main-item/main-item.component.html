@@ -1,10 +1,10 @@
 <div class="item__top">
   <button
-      class="item__button"
-      title="Удалить"
-      (click)="openDialog($event)"
-    >
-    <p>{{ firstLetter }}</p>
+    class="item__button"
+    [title]="'MAIN.DELETE' | translate"
+    (click)="openDialog($event)"
+  >
+    <p>{{firstLetter}}</p>
     <img
       class="item__img_delete"
       src="assets/svg/delete.svg"

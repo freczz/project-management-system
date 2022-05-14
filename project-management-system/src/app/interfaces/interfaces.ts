@@ -44,9 +44,9 @@ export interface ITeam {
   firstName: ITeamLangs;
   lastName: ITeamLangs;
   githubLink: string;
-  status: string;
+  status: ITeamLangs;
   githubName: string;
-  tasks: string[];
+  tasks: ITeamLangs[];
 }
 
 export interface ITeamLangs {

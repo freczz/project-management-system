@@ -1,14 +1,22 @@
 import { State, Selector, Action, StateContext } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { IState } from './pms.interface';
-import { SetToken, SetBoards, SetItemToDelete, SetNewUserStatus, SetUserData } from './pms.action';
+import {
+  SetToken,
+  SetBoards,
+  SetItemToDelete,
+  SetNewUserStatus,
+  SetUserData,
+  SetCurrentLanguage,
+} from './pms.action';
 
 const initialState: IState = {
-  token: '{}',
+  token: '',
   boards: '[]',
   itemToDelete: '{}',
   isNewUser: false,
   userData: '{}',
+  currentLanguage: 'en',
 };
 
 @State<IState>({
@@ -51,6 +59,16 @@ class PMSState {
     });
   }
 
+  @Action(SetCurrentLanguage)
+  private setCurrentLanguage(
+    { patchState }: StateContext<IState>,
+    action: SetCurrentLanguage
+  ) {
+    patchState({
+      currentLanguage: action.currentLanguage,
+    });
+  }
+
   @Action(SetUserData)
   private setUserData(
     { patchState }: StateContext<IState>,
@@ -84,6 +102,11 @@ class PMSState {
   @Selector()
   public static userData(state: IState): string {
     return state.userData;
+  }
+
+  @Selector()
+  public static currentLanguage(state: IState): string {
+    return state.currentLanguage;
   }
 }
 

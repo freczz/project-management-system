@@ -1,11 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import PMSState from 'src/app/store/pms.state';
 
 import environment from 'src/environments/environment';
 import { NgxsModule } from '@ngxs/store';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import WelcomeComponent from './welcome.component';
 
 describe('WelcomeComponent', () => {
@@ -22,6 +27,12 @@ describe('WelcomeComponent', () => {
         NgxsModule.forRoot([PMSState], {
           developmentMode: !environment.production,
         }),
+        TranslateModule.forRoot(),
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatButtonToggleModule,
       ],
       providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();

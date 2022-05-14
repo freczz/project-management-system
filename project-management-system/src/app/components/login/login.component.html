@@ -1,6 +1,8 @@
 <section class="login blue-theme" *ngIf="isNewUser">
   <div class="registration">
-    <h2 class="form-title">Registration</h2>
+    <h2 class="form-title">
+      {{ 'LOGIN.SIGN_UP.TITLE' | translate }}
+    </h2>
     <form
       class="login-form"
       [formGroup]="registrationForm"
@@ -11,11 +13,11 @@
         })"
     >
       <mat-form-field appearance="outline">
-        <mat-label>name</mat-label>
+        <mat-label>{{ 'LOGIN.LABELS.NAME' | translate }}</mat-label>
         <input
           matInput
           type="text"
-          placeholder="Enter your name"
+          [placeholder]="'LOGIN.PLACEHOLDERS.NAME' | translate"
           formControlName="name"
           [class.is-invalid]="
             registrationForm.get('name')?.touched &&
@@ -27,15 +29,15 @@
             registrationForm.get('name')?.invalid &&
             registrationForm.get('name')?.touched"
         >
-          Please enter your name
+          {{ 'LOGIN.ERRORS.NAME.REQUIRED' | translate }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>mail</mat-label>
+        <mat-label>{{ 'LOGIN.LABELS.LOGIN' | translate }}</mat-label>
         <input
           matInput
           type="email"
-          placeholder="Enter your mail"
+          [placeholder]="'LOGIN.PLACEHOLDERS.LOGIN' | translate"
           name="login"
           formControlName="login"
           [class.is-invalid]="
@@ -44,18 +46,18 @@
           (input)="clearErrorMessage()"
         />
         <mat-error *ngIf="registrationForm.get('login')?.errors?.['required']">
-          Please enter email.
+          {{ 'LOGIN.ERRORS.LOGIN.REQUIRED' | translate }}
         </mat-error>
         <mat-error *ngIf="registrationForm.get('login')?.errors?.['pattern']">
-          The email is invalid.
+          {{ 'LOGIN.ERRORS.LOGIN.PATTERN' | translate }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>password</mat-label>
+        <mat-label>{{ 'LOGIN.LABELS.PASSWORD' | translate }}</mat-label>
         <input
           matInput
           type="password"
-          placeholder="Enter your password"
+          [placeholder]="'LOGIN.PLACEHOLDERS.PASSWORD' | translate"
           name="password"
           formControlName="password"
           [class.is-invalid]="
@@ -65,12 +67,11 @@
         />
         <mat-error
           *ngIf="registrationForm.get('password')?.errors?.['required']">
-          Please enter a password.
+          {{ 'LOGIN.ERRORS.PASSWORD.REQUIRED' | translate }}
         </mat-error>
         <mat-error
           *ngIf="registrationForm.get('password')?.errors?.['pattern']">
-          Your password isn't strong enough (uppercase and lowercase letters,
-          numbers and special character).
+          {{ 'LOGIN.ERRORS.PASSWORD.PATTERN' | translate }}
         </mat-error>
       </mat-form-field>
       <div class="form-submit">
@@ -79,7 +80,7 @@
           color="primary"
           (click)="toggleAuthForm()"
         >
-          Go to login
+          {{ 'LOGIN.SIGN_UP.TOGGLE' | translate }}
         </button>
         <button
           type="submit"
@@ -87,18 +88,18 @@
           mat-flat-button
           color="primary"
         >
-          Register
+          {{ 'LOGIN.SIGN_UP.SUBMIT' | translate }}
         </button>
       </div>
     </form>
   </div>
   <div class="login-error" *ngIf="errorMessage">
-    {{ errorMessage }}
+    {{ 'LOGIN.ERRORS.SERVER.EXISTS' | translate }}
   </div>
 </section>
 <section class="login blue-theme" *ngIf="!isNewUser">
   <div class="registration">
-    <h2 class="form-title">Login</h2>
+    <h2 class="form-title">{{ 'LOGIN.SIGN_IN.TITLE' | translate }}</h2>
     <form
       class="login-form"
       [formGroup]="authForm"
@@ -108,11 +109,11 @@
         })"
     >
       <mat-form-field appearance="outline">
-        <mat-label>mail</mat-label>
+        <mat-label>{{ 'LOGIN.LABELS.LOGIN' | translate }}</mat-label>
         <input
           matInput
           type="mail"
-          placeholder="Enter your mail"
+          [placeholder]="'LOGIN.PLACEHOLDERS.LOGIN' | translate"
           formControlName="login"
           [class.is-invalid]="
             authForm.get('login')?.touched && authForm.get('login')?.errors
@@ -120,18 +121,18 @@
           (input)="clearErrorMessage()"
         />
         <mat-error *ngIf="authForm.get('login')?.errors?.['required']">
-          Please enter a mail.
+          {{ 'LOGIN.ERRORS.LOGIN.REQUIRED' | translate }}
         </mat-error>
         <mat-error *ngIf="authForm.get('login')?.errors?.['pattern']">
-          The mail is invalid
+          {{ 'LOGIN.ERRORS.LOGIN.PATTERN' | translate }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>password</mat-label>
+        <mat-label>{{ 'LOGIN.LABELS.PASSWORD' | translate }}</mat-label>
         <input
           matInput
           type="password"
-          placeholder="Enter your password"
+          [placeholder]="'LOGIN.PLACEHOLDERS.PASSWORD' | translate"
           name="password"
           formControlName="password"
           [class.is-invalid]="
@@ -141,11 +142,10 @@
           (input)="clearErrorMessage()"
         />
         <mat-error *ngIf="authForm.get('password')?.errors?.['required']">
-          Please enter a password.
+          {{ 'LOGIN.ERRORS.PASSWORD.REQUIRED' | translate }}
         </mat-error>
         <mat-error *ngIf="authForm.get('password')?.errors?.['pattern']">
-          Your password isn't strong enough (uppercase and lowercase letters,
-          numbers and special character).
+          {{ 'LOGIN.ERRORS.PASSWORD.PATTERN' | translate }}
         </mat-error>
       </mat-form-field>
       <div class="form-submit">
@@ -154,7 +154,7 @@
           color="primary"
           (click)="toggleAuthForm()"
         >
-          Go to registration
+          {{ 'LOGIN.SIGN_IN.TOGGLE' | translate }}
         </button>
         <button
           type="submit"
@@ -162,12 +162,12 @@
           mat-flat-button
           color="primary"
         >
-          Login
+          {{ 'LOGIN.SIGN_IN.SUBMIT' | translate }}
         </button>
       </div>
     </form>
   </div>
   <div class="login-error" *ngIf="errorMessage">
-    {{ errorMessage }}
+    {{ 'LOGIN.ERRORS.SERVER.NOT_FOUND' | translate }}
   </div>
 </section>

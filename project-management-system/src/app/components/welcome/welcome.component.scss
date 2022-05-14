@@ -12,11 +12,44 @@
   .welcome-wrapper {
     width: 60%;
     margin: auto;
+    position: relative;
 
     .welcome-title {
       font-size: 26px;
       text-align: center;
       font-weight: bold;
+    }
+
+    .welcome-langs {
+      position: absolute;
+      top: 50px;
+      right: 50px;
+
+      ::ng-deep .mat-button-toggle-group {
+        height: 24px;
+        border-radius: 5px;
+      }
+
+      .mat-button-toggle {
+        background-color: #d5bda5;
+        color: #211c1a;
+        height: 24px;
+
+        ::ng-deep .mat-button-toggle-label-content {
+          font-size: 14px;
+          padding: 0 10px;
+          line-height: 24px;
+        }
+
+        &:hover {
+          background-color: #b6a28d;
+        }
+      }
+
+      .mat-button-toggle-checked {
+        background-color: #938472;
+        color: #000;
+      }
     }
 
     .course {
@@ -32,16 +65,8 @@
 
       .auth-container {
         display: flex;
-        position: relative;
         justify-content: right;
         column-gap: 15px;
-        position: absolute;
-        top: 135px;
-        right: 400px;
-
-        @media (max-width: 1416px) {
-          top: 140px;
-        }
 
         @media (max-width: 906px) {
           position: static;

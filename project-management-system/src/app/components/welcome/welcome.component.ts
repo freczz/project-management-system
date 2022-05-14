@@ -10,9 +10,10 @@ import { team } from 'src/app/constants/constants';
 import { ITeam } from 'src/app/interfaces/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
-import { SetNewUserStatus } from 'src/app/store/pms.action';
+import { SetCurrentLanguage, SetNewUserStatus } from 'src/app/store/pms.action';
 import { Router } from '@angular/router';
 import PMSState from 'src/app/store/pms.state';
+import { TranslateService } from '@ngx-translate/core';
 import LoginComponent from '../login/login.component';
 
 @Component({
@@ -33,10 +34,13 @@ export default class WelcomeComponent implements OnInit {
 
   private token: string = '';
 
+  public currentLanguage: string = '';
+
   constructor(
     public dialog: MatDialog,
     private store: Store,
-    private router: Router
+    private router: Router,
+    public translate: TranslateService
   ) {}
 
   public ngOnInit(): void {
@@ -44,6 +48,16 @@ export default class WelcomeComponent implements OnInit {
     if (this.token) {
       this.router.navigate(['/']);
     }
+    this.currentLanguage = this.store.selectSnapshot(PMSState.currentLanguage);
+    this.translate.use(this.currentLanguage);
+  }
+
+  public changeLanguage(e: Event): void {
+    const currentLanguage: string = (
+      (e.target as HTMLElement).textContent || ''
+    ).toLowerCase();
+    this.translate.use(currentLanguage);
+    this.store.dispatch(new SetCurrentLanguage(currentLanguage));
   }
 
   public openDialog(isNewUser: boolean): void {

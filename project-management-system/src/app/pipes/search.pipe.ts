@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { IBoard } from '../interfaces/interfaces';
-import filterItems from '../utilities/utils';
+import { filterItems } from '../utilities/utils';
 
 @Pipe({
   name: 'search',
