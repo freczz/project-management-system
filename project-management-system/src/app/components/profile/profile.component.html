@@ -4,10 +4,10 @@
     class="profile__form"
     [formGroup]="editProfileForm"
     (ngSubmit)="editProfile({
-      name: editProfileForm.get('name')?.value,
-      login: editProfileForm.get('login')?.value,
-      password: editProfileForm.get('password')?.value
-    })"
+        name: editProfileForm.get('name')?.value,
+        login: editProfileForm.get('login')?.value,
+        password: editProfileForm.get('password')?.value
+      })"
   >
     <div class="profile__input_name">
       <mat-form-field appearance="fill">
@@ -17,11 +17,12 @@
           type="text"
           formControlName="name"
           [value]="userData.name"
-        >
+        />
         <mat-error
           *ngIf="
             editProfileForm.get('name')?.invalid &&
-            editProfileForm.get('name')?.touched"
+            editProfileForm.get('name')?.touched
+          "
         >
           Please enter your name
         </mat-error>
@@ -35,7 +36,7 @@
           type="text"
           formControlName="login"
           [value]="userData.login"
-        >
+        />
         <mat-error *ngIf="editProfileForm.get('login')?.errors?.['required']">
           Please enter email.
         </mat-error>
@@ -53,11 +54,11 @@
           formControlName="password"
         >
         <mat-error
-          *ngIf="editProfileForm.get('password')?.errors?.['required']">
+          *ngIf="editProfileForm.get('password')?.errors?.['required']"
+        >
           Please enter a password.
         </mat-error>
-        <mat-error
-          *ngIf="editProfileForm.get('password')?.errors?.['pattern']">
+        <mat-error *ngIf="editProfileForm.get('password')?.errors?.['pattern']">
           Your password isn't strong enough (uppercase and lowercase letters,
           numbers and special character).
         </mat-error>
@@ -65,10 +66,7 @@
     </div>
     <div class="profile__buttons">
       <div class="profile__delete">
-        <button
-          mat-raised-button
-          color="success"
-          (click)="openDialog()"
+        <button mat-raised-button color="success" (click)="openDialog()"
         >Delete</button>
       </div>
       <div class="profile__submit">
@@ -82,4 +80,3 @@
     </div>
   </form>
 </section>
-

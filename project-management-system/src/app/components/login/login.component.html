@@ -5,10 +5,10 @@
       class="login-form"
       [formGroup]="registrationForm"
       (ngSubmit)="signUp({
-            name: registrationForm.get('name')?.value,
-            login: registrationForm.get('login')?.value,
-            password: registrationForm.get('password')?.value
-          })"
+          name: registrationForm.get('name')?.value,
+          login: registrationForm.get('login')?.value,
+          password: registrationForm.get('password')?.value
+        })"
     >
       <mat-form-field appearance="outline">
         <mat-label>name</mat-label>
@@ -93,7 +93,7 @@
     </form>
   </div>
   <div class="login-error" *ngIf="errorMessage">
-    {{errorMessage}}
+    {{ errorMessage }}
   </div>
 </section>
 <section class="login blue-theme" *ngIf="!isNewUser">
@@ -103,9 +103,9 @@
       class="login-form"
       [formGroup]="authForm"
       (ngSubmit)="getToken({
-            login: authForm.get('login')?.value,
-            password: authForm.get('password')?.value
-          })"
+          login: authForm.get('login')?.value,
+          password: authForm.get('password')?.value
+        })"
     >
       <mat-form-field appearance="outline">
         <mat-label>mail</mat-label>
@@ -115,7 +115,8 @@
           placeholder="Enter your mail"
           formControlName="login"
           [class.is-invalid]="
-            authForm.get('login')?.touched && authForm.get('login')?.errors"
+            authForm.get('login')?.touched && authForm.get('login')?.errors
+          "
           (input)="clearErrorMessage()"
         />
         <mat-error *ngIf="authForm.get('login')?.errors?.['required']">
@@ -135,7 +136,8 @@
           formControlName="password"
           [class.is-invalid]="
             authForm.get('password')?.touched &&
-            authForm.get('password')?.errors"
+            authForm.get('password')?.errors
+          "
           (input)="clearErrorMessage()"
         />
         <mat-error *ngIf="authForm.get('password')?.errors?.['required']">
@@ -166,7 +168,6 @@
     </form>
   </div>
   <div class="login-error" *ngIf="errorMessage">
-    {{errorMessage}}
+    {{ errorMessage }}
   </div>
 </section>
-

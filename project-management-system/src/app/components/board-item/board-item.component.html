@@ -1,0 +1,34 @@
+<section class="main">
+  <div class="main__body">
+    <div class="main__top">
+      <mat-progress-spinner
+        mode="indeterminate"
+        diameter="60"
+        *ngIf="isResponseSuccess()"
+      >
+      </mat-progress-spinner>
+      <div
+        cdkDropListGroup
+        *ngIf="!isResponseSuccess()"
+        class="board-container"
+      >
+        <div
+          class="board-box"
+          cdkDropListOrientation="horizontal"
+          (cdkDropListDropped)="drop($event)"
+          cdkDropList
+        >
+          <div
+            #column
+            class="column-block"
+            *ngFor="let column of http.dataColumns | columnsFilter"
+            cdkDrag
+          >
+            <pms-task-column [column]="column"></pms-task-column>
+          </div>
+          <pms-column-creation></pms-column-creation>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

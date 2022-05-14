@@ -1,0 +1,103 @@
+<div class="block-title">
+  <div class="content-block">
+    <div class="title-box">
+      <mat-icon>list_alt</mat-icon>
+      <span class="task-title title">Task Name</span>
+    </div>
+    <mat-card-subtitle>
+      <span class="title">from the column </span>
+      <span class="column-title">'Column Title'</span>
+    </mat-card-subtitle>
+  </div>
+</div>
+<div class="block-title">
+  <div class="content-block">
+    <div class="title-box">
+      <mat-icon>description</mat-icon>
+      <span class="title">Description</span>
+    </div>
+    <mat-dialog-content>
+      <form
+        #form="ngForm"
+        class="task-form"
+        [formGroup]="formGroup"
+        (ngSubmit)="onSubmit(form)"
+      >
+        <mat-form-field
+          (click)="isExpanded = true"
+          class="description-field"
+          appearance="outline"
+        >
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            formControlName="description"
+            rows="6"
+            cols="10"
+          ></textarea>
+        </mat-form-field>
+        <div class="btns-block" *ngIf="isExpanded">
+          <button
+            class="btn-submit"
+            type="submit"
+            mat-raised-button
+          >Save</button>
+          <button
+            type="button"
+            mat-button
+            (click)="resetForm(form)"
+          >
+            <mat-icon matSuffix>highlight_off</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-dialog-content>
+  </div>
+</div>
+<div class="block-title">
+  <div class="content-block">
+    <div class="title-box">
+      <mat-icon>notes</mat-icon>
+      <span class="title">Actions</span>
+    </div>
+    <mat-expansion-panel [(expanded)]="isHide" hideToggle>
+      <mat-expansion-panel-header
+        class="header-expansion-panel"
+        *ngIf="!isHide"
+      >
+        <mat-panel-title>
+          <span>Write a comment...</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <input
+        #titleInput
+        class="title-input"
+        matInput
+        placeholder="Write a comment..."
+        type="text"
+      />
+      <div class="btns-block">
+        <button
+          [disabled]="!titleInput.value"
+          class="btn-task-submit"
+          type="submit"
+          mat-raised-button
+        >Send</button>
+        <button
+          class="btn-task-remove"
+          (click)="isHide = false"
+          type="button"
+          mat-button
+        >
+          <mat-icon class="delete-icon" matSuffix>
+            highlight_off
+          </mat-icon>
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

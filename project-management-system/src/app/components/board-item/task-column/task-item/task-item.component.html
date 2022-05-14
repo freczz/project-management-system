@@ -1,0 +1,17 @@
+<mat-card
+  class="task-block"
+  (mouseenter)="isVisible = true"
+  (mouseleave)="isVisible = false"
+  (click)="openModalWindow()"
+>
+  <div class="title-block">
+    <mat-card-title class="title" *ngIf="task">{{ task.title }}</mat-card-title>
+    <button
+      *ngIf="isVisible"
+      class="edit-button"
+      mat-button
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</mat-card>

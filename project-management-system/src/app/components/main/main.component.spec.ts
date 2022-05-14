@@ -7,6 +7,7 @@ import { NgxsModule } from '@ngxs/store';
 import SearchPipe from 'src/app/pipes/search.pipe';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import MainComponent from './main.component';
 
@@ -26,6 +27,7 @@ describe('MainComponent', () => {
         MatInputModule,
         RouterTestingModule.withRoutes([]),
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(MainComponent);
     component = fixture.componentInstance;

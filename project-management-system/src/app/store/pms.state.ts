@@ -18,20 +18,14 @@ const initialState: IState = {
 @Injectable()
 class PMSState {
   @Action(SetToken)
-  private setToken(
-    { patchState }: StateContext<IState>,
-    action: SetToken
-  ) {
+  private setToken({ patchState }: StateContext<IState>, action: SetToken) {
     patchState({
       token: action.token,
     });
   }
 
   @Action(SetBoards)
-  private setBoards(
-    { patchState }: StateContext<IState>,
-    action: SetBoards
-  ) {
+  private setBoards({ patchState }: StateContext<IState>, action: SetBoards) {
     patchState({
       boards: action.boards,
     });

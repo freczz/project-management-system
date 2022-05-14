@@ -1,18 +1,26 @@
 <div class="item__top">
   <button
-    class="item__button"
-    title="Удалить"
-    (click)="openDialog($event)"
-  >
-    <p>{{firstLetter}}</p>
+      class="item__button"
+      title="Удалить"
+      (click)="openDialog($event)"
+    >
+    <p>{{ firstLetter }}</p>
     <img
       class="item__img_delete"
       src="assets/svg/delete.svg"
       alt="delete icon"
-    >
+    />
   </button>
-  <a routerLink="/" class="item__top_link" [title]="board.title">{{board.title}}</a>
+  <a
+    [routerLink]="['/board', board.id]"
+    class="item__top_link"
+    [title]="board.title"
+  >{{ board.title }}</a>
 </div>
 <div class="item__bottom">
-  <a routerLink="/" class="item__bottom_link" [title]="board.description">{{board.description}}</a>
+  <a
+    [routerLink]="['/board', board.id]"
+    class="item__bottom_link"
+    [title]="board.description"
+  >{{ board.description }}</a>
 </div>

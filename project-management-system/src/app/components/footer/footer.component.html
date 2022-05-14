@@ -7,15 +7,13 @@
             src="assets/svg/rs_school_js.svg"
             alt="RS School"
             draggable="false"
-          >
+          />
         </a>
       </div>
       <ul class="footer__team">
         <li class="footer__member" *ngFor="let item of contacts">
-          <a
-            href="{{item.githubLink}}"
-            target="_blank"
-          >{{item.firstName.en}} {{item.lastName.en}}</a>
+          <a href="{{ item.githubLink }}" target="_blank"
+          >{{ item.firstName.en }} {{ item.lastName.en }}</a>
         </li>
       </ul>
       <p class="footer__year">© 2022</p>

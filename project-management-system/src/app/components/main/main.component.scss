@@ -8,6 +8,20 @@
     padding-top: 150px;
     padding-bottom: 80px;
 
+    ::ng-deep {
+      .mat-progress-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+
+      .mat-progress-spinner circle,
+      .mat-spinner circle {
+        stroke: #29241f;
+      }
+    }
+
     .main__top {
       display: flex;
       justify-content: space-between;
@@ -38,7 +52,7 @@
           color: #000;
         }
 
-        ::ng-deep .mat-form-field-ripple  {
+        ::ng-deep .mat-form-field-ripple {
           background-color: #000;
         }
 
@@ -50,7 +64,7 @@
           background-color: #211c1a;
         }
 
-        ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+        ::ng-deep .mat-form-field-flex>.mat-form-field-infix {
           padding: 4px 0px;
         }
 

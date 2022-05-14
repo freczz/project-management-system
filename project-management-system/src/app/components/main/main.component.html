@@ -6,14 +6,19 @@
       <div class="main__search">
         <mat-form-field appearance="fill">
           <mat-label>Search</mat-label>
-          <input matInput (input)="changeSearchValue($event)">
+          <input matInput (input)="changeSearchValue($event)" />
         </mat-form-field>
       </div>
     </div>
-    <div class="main__boards">
+    <mat-progress-spinner
+      mode="indeterminate"
+      diameter="60"
+      *ngIf="isResponseSuccess()"
+    ></mat-progress-spinner>
+    <div class="main__boards" *ngIf="!isResponseSuccess()">
       <pms-main-item
         class="main__board"
-        *ngFor="let item of items | search:searchValue , let i = index"
+        *ngFor="let item of items | search: searchValue; let i = index"
         [board]="item"
         [index]="i"
         [title]="item.title"

@@ -32,8 +32,11 @@ export const EMPTY_ITEM_TO_DELETE: IItemToDelete = {
 
 export const PASSWORD_MIN_LENGTH: number = 8;
 
+export const INITIAL_ORDER: number = 1;
+
 export const PASSWORD_PATTERN: string =
   '(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$';
+
 export const team: ITeam[] = [
   {
     imgLink: '../../../assets/jpg/alexey.jpg',

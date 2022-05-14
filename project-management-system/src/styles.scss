@@ -110,7 +110,7 @@ a:hover {
 }
 
 button {
-  border:none;
+  border: none;
 }
 
 body {
@@ -158,4 +158,8 @@ body {
 .mat-typography,
 .mat-form-field {
   font-family: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }

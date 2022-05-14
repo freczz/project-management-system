@@ -12,6 +12,11 @@ export interface IUserData {
   login: string;
   password: string;
 }
+export interface IUsers {
+  id: string;
+  name: string;
+  login: string;
+}
 
 export interface IToken {
   token: string;
@@ -59,4 +64,47 @@ export interface IItemToDelete {
 
 export interface IStore {
   PMSState: IState;
+}
+
+export interface IResponse {
+  columns: IColumns[];
+  description: string;
+  id: string;
+  title: string;
+}
+export interface IColumns {
+  id: string;
+  order: number;
+  tasks: ITasks[];
+  title: string;
+}
+export interface ITasks {
+  boardId: string;
+  columnId: string;
+  description: string;
+  done: boolean;
+  files?: IFiles[];
+  id: string;
+  order: number;
+  title: string;
+  userId: string;
+}
+
+export interface IFiles {
+  filename: string;
+  fileSize: number;
+}
+
+export interface IPostColumns {
+  id?: string;
+  title: string;
+  order: number;
+}
+
+export interface IPostTasks {
+  title: string;
+  done: boolean;
+  order: number;
+  description: string;
+  userId: string;
 }

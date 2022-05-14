@@ -1,9 +1,5 @@
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatDialogModule } from '@angular/material/dialog';
 
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import environment from 'src/environments/environment';
@@ -12,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import AppRoutingModule from './app-routing.module';
 import PMSState from './store/pms.state';
 
@@ -27,6 +24,13 @@ import WelcomeComponent from './components/welcome/welcome.component';
 import ErrorComponent from './components/error/error.component';
 import LoginComponent from './components/login/login.component';
 import ResponseInterceptor from './services/response.interceptor';
+import MaterialModule from './material/material.module';
+import BoardItemComponent from './components/board-item/board-item.component';
+import TaskColumnComponent from './components/board-item/task-column/task-column.component';
+import ColumnCreationComponent from './components/board-item/column-creation/column-creation.component';
+import TaskItemComponent from './components/board-item/task-column/task-item/task-item.component';
+import ModalEditFormComponent from './components/board-item/task-column/modal-edit-form/modal-edit-form.component';
+import ColumnsFilterPipe from './pipes/columns-filter.pipe';
 import ProfileComponent from './components/profile/profile.component';
 
 @NgModule({
@@ -38,11 +42,17 @@ import ProfileComponent from './components/profile/profile.component';
     MainComponent,
     MainItemComponent,
     NewBoardDialogComponent,
+    BoardItemComponent,
+    TaskColumnComponent,
+    ColumnCreationComponent,
+    TaskItemComponent,
+    ModalEditFormComponent,
     SearchPipe,
     WelcomeComponent,
     ErrorComponent,
     LoginComponent,
     ProfileComponent,
+    ColumnsFilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -52,14 +62,12 @@ import ProfileComponent from './components/profile/profile.component';
     CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    RouterModule,
     NgxsModule.forRoot([PMSState], {
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    MatInputModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatDialogModule,
+    MaterialModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
