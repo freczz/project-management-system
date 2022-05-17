@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { Store } from '@ngxs/store';
+import { INITIAL_Z_INDEX, MAX_Z_INDEX } from 'src/app/constants/constants';
 import { IResponse } from 'src/app/interfaces/interfaces';
 import HttpService from 'src/app/services/http.service';
 import PMSState from 'src/app/store/pms.state';
@@ -12,6 +13,10 @@ import { setColumnFormGroup, setNewOrder } from 'src/app/utilities/utils';
   styleUrls: ['./column-creation.component.scss'],
 })
 export default class ColumnCreationComponent implements OnInit {
+  @ViewChild('matPanel') matPanel!: ElementRef;
+
+  @ViewChild('form') form!: FormGroupDirective;
+
   private token: string = '';
 
   public isExpanded: boolean = false;
@@ -28,7 +33,7 @@ export default class ColumnCreationComponent implements OnInit {
     form: FormGroupDirective,
     titleInput: HTMLInputElement
   ): void {
-    if (this.formGroup.controls['title'].value) {
+    if (this.formGroup.controls['title'].value && this.formGroup.valid) {
       this.http
         .createColumn(
           {
@@ -40,10 +45,14 @@ export default class ColumnCreationComponent implements OnInit {
         .subscribe((): void => {
           this.getBoardId();
         });
-      this.resetForm(form);
+      this.resetForm();
     }
 
     titleInput.focus();
+  }
+
+  public setZIndex(): void {
+    this.matPanel.nativeElement.style.zIndex = MAX_Z_INDEX;
   }
 
   private getBoardId(): void {
@@ -56,8 +65,9 @@ export default class ColumnCreationComponent implements OnInit {
     }
   }
 
-  public resetForm(form: FormGroupDirective): void {
+  public resetForm(): void {
     this.isExpanded = this.isExpanded === false;
-    form.resetForm();
+    this.matPanel.nativeElement.style.zIndex = INITIAL_Z_INDEX;
+    this.form.resetForm();
   }
 }

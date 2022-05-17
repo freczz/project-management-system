@@ -2,10 +2,19 @@
   position: relative;
   transition: .3s;
   background-color: #c4b7a6;
+  max-width: 268px;
   color: #211c1a;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  justify-content: space-between;
+
+  .description-icon {
+    transform: scale(0.8);
+  }
 
   &:hover {
-    cursor: pointer;
     background-color: #d5bda579;
     transition: .3s
   }
@@ -13,23 +22,51 @@
   .title-block {
     display: flex;
     justify-content: space-between;
-    height: 20px;
+    min-height: 20px;
+    cursor: pointer;
+    width: 100%;
+    position: relative;
 
-    .title {
-      font-size: 16px;
+    .green-line {
+      position: absolute;
+      top: 0;
+      left: -6px;
+      width: 5px;
+      border-radius: 10px;
+      height: 100%;
+      background-color: #2E8B57;
     }
 
-    .edit-button {
+    .left-side-block {
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 10px;
-      min-width: unset;
 
-      mat-icon {
-        transform: scale(0.6);
-        color: #ffffff;
+      .title {
+        font-size: 16px;
+        margin: 0;
+        margin-left: 10px;
+        max-width: 160px;
+        word-wrap: break-word;
       }
     }
+  }
+
+  .edit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    min-width: 40px;
+    padding: 0;
+
+    .mat-icon {
+      transform: scale(0.8);
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .title {
+    max-width: 120px !important;
   }
 }

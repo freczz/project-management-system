@@ -2,16 +2,27 @@
   class="task-block"
   (mouseenter)="isVisible = true"
   (mouseleave)="isVisible = false"
-  (click)="openModalWindow()"
 >
-  <div class="title-block">
-    <mat-card-title class="title" *ngIf="task">{{ task.title }}</mat-card-title>
-    <button
-      *ngIf="isVisible"
-      class="edit-button"
-      mat-button
-    >
-      <mat-icon>close</mat-icon>
-    </button>
+  <div
+    class="title-block"
+    *ngIf="task"
+    (click)="openModalWindow()"
+  >
+    <div class="green-line" *ngIf="task.done === true"></div>
+    <div class="left-side-block">
+      <mat-icon
+        class="description-icon"
+        *ngIf="task.description.trim()"
+      >grading</mat-icon>
+      <mat-card-title class="title" *ngIf="task">{{ task.title }}</mat-card-title>
+    </div>
   </div>
+  <button
+      class="edit-button"
+      *ngIf="isVisible"
+      mat-button
+      (click)="deleteTask()"
+    >
+      <mat-icon>delete</mat-icon>
+  </button>
 </mat-card>
