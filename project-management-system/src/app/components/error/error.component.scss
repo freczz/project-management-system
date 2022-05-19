@@ -9,11 +9,16 @@
   row-gap: 50px;
   position: absolute;
   top: 0px;
+  left: 0;
   z-index: 15;
 
   .error-title {
     font-size: 80px;
     color: black;
+
+    @media (max-width: 768px) {
+      font-size: calc(60px + 20 * ((100vw - 420px) / (768 - 420)));
+    }
   }
 
   .error-text {

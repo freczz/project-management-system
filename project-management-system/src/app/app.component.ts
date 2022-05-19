@@ -10,6 +10,7 @@ import {
 import { Store } from '@ngxs/store';
 import {
   SetBoards,
+  SetCurrentBoardId,
   SetCurrentLanguage,
   SetItemToDelete,
   SetNewUserStatus,
@@ -52,6 +53,10 @@ export default class AppComponent implements OnInit {
       'currentLanguage',
       this.store.selectSnapshot(PMSState.currentLanguage)
     );
+    window.localStorage.setItem(
+      'currentBoardId',
+      this.store.selectSnapshot(PMSState.currentBoardId)
+    );
   }
 
   constructor(private router: Router, private store: Store) {
@@ -64,6 +69,8 @@ export default class AppComponent implements OnInit {
     const userData: string = window.localStorage.getItem('userData') ?? '{}';
     const currentLanguage: string =
       window.localStorage.getItem('currentLanguage') ?? 'en';
+    const currentBoardId: string =
+      window.localStorage.getItem('currentBoardId') ?? '';
     window.localStorage.clear();
     this.store.dispatch(new SetToken(token));
     this.store.dispatch(new SetBoards(boards));
@@ -71,6 +78,7 @@ export default class AppComponent implements OnInit {
     this.store.dispatch(new SetNewUserStatus(isNewUser === 'true'));
     this.store.dispatch(new SetUserData(userData));
     this.store.dispatch(new SetCurrentLanguage(currentLanguage));
+    this.store.dispatch(new SetCurrentBoardId(currentBoardId));
   }
 
   public ngOnInit(): void {

@@ -3,46 +3,51 @@
     <h2 [@expandTitle]="state" class="welcome-title">
       {{ 'WELCOME.TITLE' | translate }}
     </h2>
-    <div class="welcome-langs">
-      <mat-button-toggle-group
-        appearance="legacy"
-        name="lang"
-        aria-label="Lang"
-        [value]="currentLanguage"
-      >
-        <mat-button-toggle
-          (click)="changeLanguage($event)"
-          value="en"
-        >En</mat-button-toggle>
-        <mat-button-toggle
-          (click)="changeLanguage($event)"
-          value="ru"
-        >Ru</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
     <p class="course">{{ 'WELCOME.COURSE' | translate }}</p>
     <div class="about-project">
       <div class="about-container">
-        <div class="auth-container">
-          <div class="sign-up">
-            <p class="login-text">{{ 'WELCOME.LOGIN' | translate }}</p>
-            <img
-              src="../../../assets/svg/login.svg"
-              class="login"
-              alt="login"
-              (click)="openDialog(false)"
-            />
+        <div class="top-container">
+          <div class="auth-container">
+            <div class="sign-up">
+              <p class="login-text">{{ 'WELCOME.LOGIN' | translate }}</p>
+              <img
+                src="../../../assets/svg/login.svg"
+                class="login"
+                alt="login"
+                draggable="false"
+                (click)="openDialog(false)"
+              />
+            </div>
+            <div class="registration">
+              <p class="login-text">{{ 'WELCOME.SIGN_UP' | translate }}</p>
+              <img
+                src="../../../assets/svg/registr.svg"
+                class="login"
+                alt="login"
+                draggable="false"
+                (click)="openDialog(true)"
+              />
+            </div>
           </div>
-          <div class="registrtion">
-            <p class="login-text">{{ 'WELCOME.SIGN_UP' | translate }}</p>
-            <img
-              src="../../../assets/svg/registr.svg"
-              class="login"
-              alt="login"
-              (click)="openDialog(true)"
-            />
+          <div class="welcome-langs">
+            <mat-button-toggle-group
+              appearance="legacy"
+              name="lang"
+              aria-label="Lang"
+              [value]="currentLanguage"
+            >
+              <mat-button-toggle
+                (click)="changeLanguage($event)"
+                value="en"
+              >En</mat-button-toggle>
+              <mat-button-toggle
+                (click)="changeLanguage($event)"
+                value="ru"
+              >Ru</mat-button-toggle>
+            </mat-button-toggle-group>
           </div>
         </div>
+
         <h3 class="about-title">{{ 'WELCOME.ABOUT_PROJECT' | translate }}</h3>
         <p class="project-description">
           {{ 'WELCOME.DESCRIPTION' | translate }}
@@ -56,6 +61,7 @@
               src="{{ person.imgLink }}"
               alt=" {{ person.firstName.en }}"
               class="person-img"
+              draggable="false"
             />
             <p class="person-name">
               {{ 'WELCOME.NAME' | translate:{

@@ -53,11 +53,17 @@ export function setColumnFormGroup(): FormGroup {
 }
 
 export function setNewOrder(data: IColumns[] | ITasks[]): number {
-  let max: number = INITIAL_ORDER;
+  const items: number[] = [];
   data.forEach((v: IColumns | ITasks): void => {
-    max += Math.round(v.order / 2);
+    items.push(v.order);
   });
-  return max;
+  return items.length ? Math.max(...items) + INITIAL_ORDER : INITIAL_ORDER;
+}
+
+export function sortItems(items: IColumns[] | ITasks[]): IColumns[] | ITasks[] {
+  return items.sort(
+    (a: IColumns | ITasks, b: IColumns | ITasks): number => a.order - b.order
+  );
 }
 
 export function createTranslateLoader(http: HttpClient) {

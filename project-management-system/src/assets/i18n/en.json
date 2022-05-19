@@ -1,4 +1,25 @@
 {
+  "BOARD": {
+    "ADD": {
+      "COLUMN": "Add column",
+      "TASK": "Add task",
+      "ERROR": "Title is too long",
+      "PLACEHOLDERS": {
+        "COLUMN": "Enter column title",
+        "TASK": "Enter task title"
+      }
+    },
+    "MODAL": {
+      "FROM_COLUMN": "from the column ",
+      "DESCRIPTION": "Description",
+      "ERROR": "Description is too long",
+      "COMPLETED": "Task completed",
+      "INCOMPLETED": "Task not completed",
+      "SAVE": "Save",
+      "OK": "Ok",
+      "DELETE": "Delete task"
+    }
+  },
   "DELETE": {
     "TITLE": "Delete?",
     "NO": "No",
@@ -26,7 +47,7 @@
       "CREATE": "Create"
     },
     "EDIT_PROFILE": {
-      "TITLE": "Edit Profile",
+      "TITLE": "Profile",
       "LABELS": {
         "NAME": "name",
         "LOGIN": "login",
@@ -89,7 +110,7 @@
         "PATTERN": "Your password isn't strong enough (uppercase and lowercase letters, numbers and special character)"
       },
       "SERVER": {
-        "NOT_FOUND": "User not found",
+        "NOT_FOUND": "Invalid mail or password",
         "EXISTS": "User is already exists"
       }
     }
@@ -105,7 +126,7 @@
     "LOGIN": "Login",
     "SIGN_UP": "Sign up",
     "ABOUT_PROJECT": "About project:",
-    "DESCRIPTION": "A project management system is an application that helps an individual in a team or group of developers achieve their goals.",
+    "DESCRIPTION": "A project management system is an application that helps an individual or a team of developers achieve their goals.",
     "ABOUT_TEAM": "About us:",
     "NAME": "{{nameEn}}",
     "STATUS": "{{statusEn}}",

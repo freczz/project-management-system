@@ -6,7 +6,7 @@
       <span class="task-title title">{{ data.task.title }}</span>
     </div>
     <mat-card-subtitle>
-      <span class="title">from the column </span>
+      <span class="title">{{ 'BOARD.MODAL.FROM_COLUMN' | translate }}</span>
       <span class="column-title">{{ data.column.title }}</span>
     </mat-card-subtitle>
   </div>
@@ -15,7 +15,7 @@
   <div class="content-block">
     <div class="title-box">
       <mat-icon>grading</mat-icon>
-      <span class="title">Description</span>
+      <span class="title">{{ 'BOARD.MODAL.DESCRIPTION' | translate }}</span>
     </div>
     <form
       #form="ngForm"
@@ -40,7 +40,7 @@
             cols="10"></textarea>
         </mat-form-field>
       </mat-dialog-content>
-      <mat-error *ngIf="form.invalid">Description is too long</mat-error>
+      <mat-error *ngIf="form.invalid">{{ 'BOARD.MODAL.ERROR' | translate }}</mat-error>
       <mat-radio-group
         *ngIf="data.task"
         class="radio-group"
@@ -53,7 +53,9 @@
           (click)="isExpanded = true"
           [checked]="data.task.done === true"
           [value]="'completed'"
-        >Task completed</mat-radio-button>
+        >
+          {{ 'BOARD.MODAL.COMPLETED' | translate }}
+        </mat-radio-button>
         <mat-radio-button
           class="radio-btn"
           tabindex="-1"
@@ -61,14 +63,18 @@
           (click)="isExpanded = true"
           [checked]="data.task.done === false"
           [value]="'not-completed'"
-        >Task not completed</mat-radio-button>
+        >
+          {{ 'BOARD.MODAL.INCOMPLETED' | translate }}
+        </mat-radio-button>
       </mat-radio-group>
       <div class="btns-block" *ngIf="isExpanded">
         <button
           class="btn-submit btn-cancel"
           type="submit"
           mat-raised-button
-        >Save</button>
+        >
+          {{ 'BOARD.MODAL.SAVE' | translate }}
+        </button>
         <button
           type="button"
           mat-button
@@ -91,6 +97,10 @@
     color="primary"
     (click)="closeDialog()"
     [mat-dialog-close]="data.task"
-    >Cancel</button>
-  <button (click)="deleteTask()" mat-button>Delete task</button>
+    >
+    {{ 'BOARD.MODAL.OK' | translate }}
+  </button>
+  <button (click)="deleteTask()" mat-button>
+    {{ 'BOARD.MODAL.DELETE' | translate }}
+  </button>
 </mat-dialog-actions>

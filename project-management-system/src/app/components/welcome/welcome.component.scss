@@ -18,37 +18,13 @@
       font-size: 26px;
       text-align: center;
       font-weight: bold;
-    }
 
-    .welcome-langs {
-      position: absolute;
-      top: 50px;
-      right: 50px;
-
-      ::ng-deep .mat-button-toggle-group {
-        height: 24px;
-        border-radius: 5px;
+      @media (max-width: 1200px) {
+        font-size: calc(22px + 4 * ((100vw - 768px) / (1200 - 768)));
       }
 
-      .mat-button-toggle {
-        background-color: #d5bda5;
-        color: #211c1a;
-        height: 24px;
-
-        ::ng-deep .mat-button-toggle-label-content {
-          font-size: 14px;
-          padding: 0 10px;
-          line-height: 24px;
-        }
-
-        &:hover {
-          background-color: #b6a28d;
-        }
-      }
-
-      .mat-button-toggle-checked {
-        background-color: #938472;
-        color: #000;
+      @media (max-width: 768px) {
+        font-size: calc(18px + 4 * ((100vw - 420px) / (768 - 420)));
       }
     }
 
@@ -56,60 +32,121 @@
       font-size: 16px;
       text-align: center;
       line-height: 35px;
+
+      @media (max-width: 1200px) {
+        font-size: calc(14px + 2 * ((100vw - 768px) / (1200 - 768)));
+        line-height: calc(20px + 15 * ((100vw - 768px) / (1200 - 768)));
+      }
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+        line-height: calc(10px + 10 * ((100vw - 420px) / (768 - 420)));
+      }
     }
 
     .about-project {
       width: 100%;
       height: 100%;
-      margin-top: 50px;
+      margin-top: 0px;
 
-      .auth-container {
+      .top-container {
         display: flex;
-        justify-content: right;
-        column-gap: 15px;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
 
-        @media (max-width: 906px) {
-          position: static;
+        .auth-container {
+          display: flex;
+          justify-content: right;
+          column-gap: 15px;
+
+          @media (max-width: 906px) {
+            position: static;
+          }
+
+          .login-text {
+            font-size: 12px;
+            text-align: center;
+            line-height: 0px;
+          }
+
+          .login {
+            width: 40px;
+            height: 40px;
+
+            &:hover {
+              opacity: 0.5;
+              cursor: pointer;
+              transition: 0.5s;
+            }
+          }
         }
 
-        .login-text {
-          font-size: 12px;
-          text-align: center;
-          line-height: 0px;
-        }
+        .welcome-langs {
+          ::ng-deep .mat-button-toggle-group {
+            height: 24px;
+            border-radius: 5px;
+          }
 
-        .login {
-          width: 40px;
-          height: 40px;
+          .mat-button-toggle {
+            background-color: #d5bda5;
+            color: #211c1a;
+            height: 24px;
 
-          &:hover {
-            opacity: 0.5;
-            cursor: pointer;
-            transition: 0.5s;
+            ::ng-deep .mat-button-toggle-label-content {
+              font-size: 14px;
+              padding: 0 10px;
+              line-height: 24px;
+            }
+
+            &:hover {
+              background-color: #b6a28d;
+            }
+          }
+
+          .mat-button-toggle-checked {
+            background-color: #938472;
+            color: #000;
           }
         }
       }
 
       .team-container {
         display: flex;
-        flex-wrap: wrap;
         justify-content: space-around;
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+          align-items: center;
+        }
 
         .person {
           border: 5px solid rgb(80, 21, 21);
           border-radius: 10px;
-          width: 300px;
-          min-height: 320px;
+          width: 30%;
           margin-bottom: 100px;
 
+          @media (max-width: 1200px) {
+            border: 3px solid rgb(80, 21, 21);
+          }
+
+          @media (max-width: 768px) {
+            width: calc(180px + 100 * ((100vw - 420px) / (768 - 420)));
+            margin-bottom: 60px;
+          }
+
           .person-wrapper {
-            width: 95%;
-            height: 95%;
-            margin: 10px auto;
+            height: calc(100% - 20px);
+            margin: 20px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             row-gap: 10px;
+
+            @media (max-width: 1200px) {
+              margin: calc(10px + 10 * ((100vw - 768px) / (1200 - 768))) auto;
+              row-gap: calc(5px + 5 * ((100vw - 768px) / (1200 - 768)));
+            }
 
             .person-img {
               width: 85%;
@@ -117,12 +154,31 @@
               border: 3px solid rgb(80, 21, 21);
               border-radius: 10px;
               object-fit: cover;
+
+              @media (max-width: 1200px) {
+                height: calc(120px + 100 * ((100vw - 768px) / (1200 - 768)));
+              }
+
+              @media (max-width: 768px) {
+                height: calc(120px + 100 * ((100vw - 420px) / (768 - 420)));
+              }
+            }
+
+            .person-name {
+              @media (max-width: 1200px) {
+                font-size: calc(18px + 2 * ((100vw - 768px) / (1200 - 768)));
+                margin: 0 0 calc(6px + 6 * ((100vw - 768px) / (1200 - 768))) 0;
+              }
             }
 
             .github-link {
               text-decoration: none;
               color: grey;
               font-size: 16px;
+
+              @media (max-width: 1200px) {
+                font-size: calc(13px + 3 * ((100vw - 768px) / (1200 - 768)));
+              }
 
               &:hover {
                 color: rgb(88, 69, 69);
@@ -134,17 +190,33 @@
             .person-specialization,
             .task-item {
               font-size: 16px;
+
+              @media (max-width: 1200px) {
+                font-size: calc(13px + 3 * ((100vw - 768px) / (1200 - 768)));
+              }
             }
 
             .tasks {
               list-style-type: decimal;
-              position: static;
               display: block;
-              width: 200px;
+              width: 100%;
+              padding: 0 30px;
+
+              @media (max-width: 1200px) {
+                padding: 0 calc(20px + 10 * ((100vw - 768px) / (1200 - 768)));
+              }
+
+              @media (max-width: 768px) {
+                padding: 0 calc(20px + 10 * ((100vw - 420px) / (768 - 420)));
+              }
 
               .task-item {
-                line-height: 25px;
+                margin: 4.5px 0;
                 width: 100%;
+
+                @media (max-width: 1200px) {
+                  font-size: calc(14px + 2 * ((100vw - 768px) / (1200 - 768)));
+                }
               }
             }
           }
@@ -156,14 +228,35 @@
         font-weight: bold;
         text-align: center;
         line-height: 60px;
+
+        @media (max-width: 1200px) {
+          font-size: calc(20px + 2 * ((100vw - 768px) / (1200 - 768)));
+          line-height: calc(40px + 20 * ((100vw - 768px) / (1200 - 768)));
+        }
+
+        @media (max-width: 768px) {
+          font-size: calc(18px + 2 * ((100vw - 420px) / (768 - 420)));
+          line-height: calc(20px + 20 * ((100vw - 420px) / (768 - 420)));
+        }
       }
 
       .project-description {
-        text-align: justify;
+        text-align: center;
         text-indent: 3%;
-        max-width: 700px;
+        max-width: 85%;
+        font-size: 20px;
         line-height: 30px;
         margin: 0 auto;
+
+        @media (max-width: 1200px) {
+          font-size: calc(18px + 2 * ((100vw - 768px) / (1200 - 768)));
+          line-height: calc(20px + 10 * ((100vw - 768px) / (1200 - 768)));
+        }
+
+        @media (max-width: 768px) {
+          font-size: calc(16px + 2 * ((100vw - 420px) / (768 - 420)));
+          line-height: 20px;
+        }
       }
     }
   }

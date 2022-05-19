@@ -56,12 +56,28 @@ export const team: ITeam[] = [
     },
     tasks: [
       {
-        en: 'Main Page',
-        ru: 'Главная Страница',
+        en: 'Main page',
+        ru: 'Главная страница',
       },
       {
         en: 'Authorization',
         ru: 'Авторизация',
+      },
+      {
+        en: 'Edit profile page',
+        ru: 'Страница редактирования профиля',
+      },
+      {
+        en: 'Localization',
+        ru: 'Локализация',
+      },
+      {
+        en: 'Work with NGXS',
+        ru: 'Работа с NGXS',
+      },
+      {
+        en: 'Work with backend',
+        ru: 'Работа с бекендом',
       },
     ],
   },
@@ -83,8 +99,16 @@ export const team: ITeam[] = [
     },
     tasks: [
       {
-        en: 'Board Page',
-        ru: 'Страница Доски',
+        en: 'Board page',
+        ru: 'Страница доски',
+      },
+      {
+        en: 'Drag & drop',
+        ru: 'Драг & дроп',
+      },
+      {
+        en: 'Columns and tasks',
+        ru: 'Колонки и задания',
       },
     ],
   },
@@ -106,8 +130,16 @@ export const team: ITeam[] = [
     },
     tasks: [
       {
-        en: 'Welcome Page',
-        ru: 'Страница Приветствия',
+        en: 'Welcome page',
+        ru: 'Страница приветствия',
+      },
+      {
+        en: 'Error page',
+        ru: 'Страница ошибки',
+      },
+      {
+        en: 'Forms validation',
+        ru: 'Валидация форм',
       },
     ],
   },

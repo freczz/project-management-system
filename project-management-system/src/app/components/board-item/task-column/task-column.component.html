@@ -22,7 +22,7 @@
       </mat-form-field>
     </div>
     <button
-      (click)="deleteColumn()"
+      (click)="openDialog()"
       class="btn-edit-column"
       mat-button
     >
@@ -43,7 +43,11 @@
       *ngFor="let task of column.tasks"
       cdkDrag
     >
-      <pms-task-item [column]="column" [task]="task"></pms-task-item>
+      <pms-task-item
+        [boardId]="boardId"
+        [column]="column"
+        [task]="task"
+      ></pms-task-item>
     </div>
   </div>
   <div #matPanel class="mat-panel">
@@ -60,7 +64,7 @@
     >
       <mat-panel-title class="white-theme">
         <mat-icon>add</mat-icon>
-        <span>Add task</span>
+        <span>{{ 'BOARD.ADD.TASK' | translate }}</span>
       </mat-panel-title>
     </mat-expansion-panel-header>
     <form
@@ -73,17 +77,19 @@
         class="title-input white-theme"
         matInput
         formControlName="title"
-        placeholder="Enter task title"
+        [placeholder]="'BOARD.ADD.PLACEHOLDERS.TASK' | translate"
         type="text"
       />
-      <mat-error class="error" *ngIf="formGroup.invalid">Title is too long</mat-error>
+      <mat-error class="error" *ngIf="formGroup.invalid">
+        {{ 'BOARD.ADD.ERROR' | translate }}
+      </mat-error>
       <div class="btns-block">
         <button
           class="btn-task-submit white-theme"
           type="submit"
           mat-raised-button
         >
-          Add task
+          {{ 'BOARD.ADD.TASK' | translate }}
         </button>
         <button
           class="btn-task-remove"

@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxsModule } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
 import environment from 'src/environments/environment';
@@ -24,6 +25,7 @@ describe('ColumnCreationComponent', () => {
         NgxsModule.forRoot([PMSState], {
           developmentMode: !environment.production,
         }),
+        TranslateModule.forRoot(),
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(ColumnCreationComponent);

@@ -12,6 +12,7 @@ export interface IUserData {
   login: string;
   password: string;
 }
+
 export interface IUsers {
   id: string;
   name: string;
@@ -72,12 +73,14 @@ export interface IResponse {
   id: string;
   title: string;
 }
+
 export interface IColumns {
   id: string;
   order: number;
   tasks: ITasks[];
   title: string;
 }
+
 export interface ITasks {
   boardId: string;
   columnId: string;

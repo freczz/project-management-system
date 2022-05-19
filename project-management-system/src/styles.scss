@@ -163,3 +163,33 @@ body {
 * {
   box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f1d5bb;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #998777;
+  border-radius: 9em;
+  box-shadow: inset 1px 1px 10px #998777;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #726459;
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+  background: linear-gradient(120deg, #f1d5bb 40%, rgba(0, 0, 0, 0) 41%),
+  linear-gradient(240deg, #f1d5bb 40%, rgba(0, 0, 0, 0) 41%),
+  linear-gradient(0deg, #f1d5bb 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #998777;
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+  background:
+    linear-gradient(300deg, #f1d5bb 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(60deg, #f1d5bb 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(180deg, #f1d5bb 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #998777;
+}

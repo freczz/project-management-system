@@ -39,6 +39,7 @@ import ColumnsFilterPipe from './pipes/columns-filter.pipe';
 import ProfileComponent from './components/profile/profile.component';
 import { createTranslateLoader } from './utilities/utils';
 import ColumnsSearchPipe from './pipes/columns-search.pipe';
+import TasksFilterPipe from './pipes/tasks-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import ColumnsSearchPipe from './pipes/columns-search.pipe';
     ProfileComponent,
     ColumnsFilterPipe,
     ColumnsSearchPipe,
+    TasksFilterPipe,
   ],
   imports: [
     BrowserModule,

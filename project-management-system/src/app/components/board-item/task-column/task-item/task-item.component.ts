@@ -2,8 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { tap } from 'rxjs';
-import { IColumns, IResponse, ITasks } from 'src/app/interfaces/interfaces';
+import DeleteConfirmationComponent from 'src/app/components/delete-confirmation/delete-confirmation.component';
+import { EMPTY_ITEM_TO_DELETE } from 'src/app/constants/constants';
+import { IColumns, IItemToDelete, ITasks } from 'src/app/interfaces/interfaces';
 import HttpService from 'src/app/services/http.service';
+import { SetItemToDelete } from 'src/app/store/pms.action';
 import PMSState from 'src/app/store/pms.state';
 import ModalEditFormComponent from '../modal-edit-form/modal-edit-form.component';
 
@@ -17,9 +20,13 @@ export default class TaskItemComponent implements OnInit {
 
   @Input() column!: IColumns;
 
+  @Input() boardId: string = '';
+
   public isVisible: boolean = false;
 
   private token: string = '';
+
+  private taskToDelete: IItemToDelete = EMPTY_ITEM_TO_DELETE;
 
   constructor(
     public dialog: MatDialog,
@@ -31,21 +38,13 @@ export default class TaskItemComponent implements OnInit {
     this.token = this.store.selectSnapshot(PMSState.token);
   }
 
-  public deleteTask(): void {
-    this.http
-      .getTask(this.token, this.column.id, this.task.id)
-      .subscribe((dataTask: ITasks) => {
-        this.task = dataTask;
-        this.http
-          .deleteTask(this.task.columnId, this.task.id)
-          .subscribe((): void => {
-            this.http
-              .getDataBoard(`${this.http.currentBoardId}`, this.token)
-              .subscribe((data: IResponse): void => {
-                this.http.dataColumns = data.columns;
-              });
-          });
-      });
+  public openDialog(): void {
+    this.taskToDelete.title = this.task.title;
+    this.taskToDelete.boardId = this.boardId;
+    this.taskToDelete.columnId = this.column.id;
+    this.taskToDelete.taskId = this.task.id;
+    this.store.dispatch(new SetItemToDelete(JSON.stringify(this.taskToDelete)));
+    this.dialog.open(DeleteConfirmationComponent);
   }
 
   public openModalWindow(): void {

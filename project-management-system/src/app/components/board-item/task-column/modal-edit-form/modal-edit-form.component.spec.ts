@@ -3,8 +3,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxsModule } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
 import environment from 'src/environments/environment';
@@ -27,6 +28,8 @@ describe('ModalEditFormComponent', () => {
         NgxsModule.forRoot([PMSState], {
           developmentMode: !environment.production,
         }),
+        TranslateModule.forRoot(),
+        MatDialogModule,
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },

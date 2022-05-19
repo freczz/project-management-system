@@ -12,7 +12,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
 import { Subscription } from 'rxjs';
-import { filterTitle } from 'src/app/utilities/utils';
+import { filterTitle, setNewOrder } from 'src/app/utilities/utils';
 
 @Component({
   selector: 'pms-board-item',
@@ -29,6 +29,8 @@ export default class BoardItemComponent implements OnInit, OnDestroy {
   public boardTitle: string = '';
 
   public searchValue: string = '';
+
+  public columns: IColumns[] = [];
 
   constructor(
     public http: HttpService,
@@ -53,16 +55,16 @@ export default class BoardItemComponent implements OnInit, OnDestroy {
       event.previousIndex,
       event.currentIndex
     );
-
-    this.http.dataColumns.forEach((column: IColumns): void => {
+    this.http.dataColumns.forEach((column: IColumns, i: number): void => {
+      const newOrder: number = setNewOrder(this.http.dataColumns) + i;
+      this.http.dataColumns[i].order = newOrder;
       this.http
         .updateColumn(
           {
             title: column.title,
-            order: column.order,
+            order: newOrder,
           },
-          column.id,
-          this.token
+          column.id
         )
         .subscribe((data: IPostColumns): IPostColumns => data);
     });
@@ -85,9 +87,10 @@ export default class BoardItemComponent implements OnInit, OnDestroy {
       );
       if (currentBoard) {
         this.http
-          .getDataBoard(currentBoard.id, this.token)
+          .getDataBoard(currentBoard.id)
           .subscribe((item: IResponse): void => {
             this.http.dataColumns = item.columns;
+            this.columns = this.http.dataColumns;
           });
         this.http.currentBoardId = currentBoard.id;
         this.cloneDataColumns = this.http.dataColumns;

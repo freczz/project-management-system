@@ -73,12 +73,11 @@ export default class ModalEditFormComponent implements OnInit {
                 columnId: data.columnId,
               },
               data.columnId,
-              data.id,
-              this.token
+              data.id
             )
             .subscribe((): void => {
               this.http
-                .getDataBoard(`${this.http.currentBoardId}`, this.token)
+                .getDataBoard(`${this.http.currentBoardId}`)
                 .subscribe((dataColumns: IResponse): void => {
                   this.http.dataColumns = dataColumns.columns;
                   this.resetForm();
@@ -98,7 +97,7 @@ export default class ModalEditFormComponent implements OnInit {
       .deleteTask(this.data.task.columnId, this.data.task.id)
       .subscribe((): void => {
         this.http
-          .getDataBoard(`${this.http.currentBoardId}`, this.token)
+          .getDataBoard(`${this.http.currentBoardId}`)
           .subscribe((data: IResponse): void => {
             this.http.dataColumns = data.columns;
           });

@@ -33,3 +33,9 @@ export class SetCurrentLanguage {
 
   constructor(public currentLanguage: string) {}
 }
+
+export class SetCurrentBoardId {
+  static readonly type = '[PMS] Set current board id';
+
+  constructor(public currentBoardId: string) {}
+}

@@ -36,14 +36,15 @@ export default class MainComponent implements OnInit {
 
   public ngOnInit(): void {
     this.token = this.store.selectSnapshot(PMSState.token);
-    if (!this.token) {
+    if (this.token) {
+      this.store.subscribe((store: IStore): void => {
+        this.items = JSON.parse(store.PMSState.boards);
+      });
+      this.getBoards();
+      this.getCurrentUserData();
+    } else {
       this.goToWelcomePage();
     }
-    this.store.subscribe((store: IStore): void => {
-      this.items = JSON.parse(store.PMSState.boards);
-    });
-    this.getBoards();
-    this.getCurrentUserData();
   }
 
   private getBoards(): void {

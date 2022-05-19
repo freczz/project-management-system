@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxsModule } from '@ngxs/store';
 import PMSState from 'src/app/store/pms.state';
@@ -25,6 +26,7 @@ describe('TaskColumnComponent', () => {
           developmentMode: !environment.production,
         }),
       ],
+      providers: [{ provide: MatDialog, useValue: {} }],
     }).compileComponents();
     fixture = TestBed.createComponent(TaskColumnComponent);
     component = fixture.componentInstance;
