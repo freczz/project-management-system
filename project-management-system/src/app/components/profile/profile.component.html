@@ -1,0 +1,87 @@
+<section class="profile">
+  <h2 class="profile__title">{{ 'HEADER.EDIT_PROFILE.TITLE' | translate }}</h2>
+  <form
+    class="profile__form"
+    [formGroup]="editProfileForm"
+    (ngSubmit)="editProfile({
+        name: editProfileForm.get('name')?.value,
+        login: editProfileForm.get('login')?.value,
+        password: editProfileForm.get('password')?.value
+      })"
+  >
+    <div class="profile__input_name">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'HEADER.EDIT_PROFILE.LABELS.NAME' | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          [placeholder]="'HEADER.EDIT_PROFILE.PLACEHOLDERS.NAME' | translate"
+          formControlName="name"
+          [value]="userData.name"
+        />
+        <mat-error
+          *ngIf="
+            editProfileForm.get('name')?.invalid &&
+            editProfileForm.get('name')?.touched
+          "
+        >
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.NAME.REQUIRED' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="profile__input_login">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'HEADER.EDIT_PROFILE.LABELS.LOGIN' | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          [placeholder]="'HEADER.EDIT_PROFILE.PLACEHOLDERS.LOGIN' | translate"
+          formControlName="login"
+          [value]="userData.login"
+        />
+        <mat-error *ngIf="editProfileForm.get('login')?.errors?.['required']">
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.LOGIN.REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="editProfileForm.get('login')?.errors?.['pattern']">
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.LOGIN.PATTERN' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="profile__input_password">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'HEADER.EDIT_PROFILE.LABELS.PASSWORD' | translate }}</mat-label>
+        <input
+          matInput
+          type="password"
+          [placeholder]="'HEADER.EDIT_PROFILE.PLACEHOLDERS.PASSWORD' | translate"
+          formControlName="password"
+        >
+        <mat-error
+          *ngIf="editProfileForm.get('password')?.errors?.['required']">
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.PASSWORD.REQUIRED' | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="editProfileForm.get('password')?.errors?.['pattern']">
+          {{ 'HEADER.EDIT_PROFILE.ERRORS.PASSWORD.PATTERN' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="profile__buttons">
+      <div class="profile__delete">
+        <button
+          mat-raised-button
+          color="success"
+          (click)="openDialog()"
+        >{{ 'HEADER.EDIT_PROFILE.DELETE' | translate }}</button>
+      </div>
+      <div class="profile__submit">
+        <button
+          mat-raised-button
+          color="success"
+          type="submit"
+          (click)="validateFormFields()"
+        >{{ 'HEADER.EDIT_PROFILE.SUBMIT' | translate }}</button>
+      </div>
+    </div>
+  </form>
+</section>

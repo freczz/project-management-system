@@ -1,0 +1,189 @@
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  .header__top {
+    height: 60px;
+    background: linear-gradient(to bottom, #000, 90%, #211C1A);
+    position: sticky;
+    top: 0px;
+    z-index: 11;
+
+    @media (max-width: 1200px) {
+      height: calc(50px + 10 * ((100vw - 768px) / (1200 - 768)));
+    }
+
+    @media (max-width: 768px) {
+      height: calc(40px + 10 * ((100vw - 420px) / (768 - 420)));
+    }
+
+    .header__container {
+      max-width: 1170px;
+      margin: 0 auto;
+      display: flex;
+      padding: 12px 15px 0 15px;
+      position: sticky;
+      top: -10px;
+
+      @media (max-width: 1200px) {
+        padding-top: calc(8px + 4 * ((100vw - 768px) / (1200 - 768)));
+      }
+
+      @media (max-width: 768px) {
+        padding-top: calc(4px + 4 * ((100vw - 420px) / (768 - 420)));
+      }
+
+      .mat-success {
+        background-color: #d5bda5;
+        color: #211c1a;
+
+        &:hover {
+          background: #b6a28d;
+        }
+      }
+
+      .header__button_board button,
+      .header__button_profile button,
+      .header__button_logout button {
+        @media (max-width: 1200px) {
+          height: calc(36px + 4 * ((100vw - 768px) / (1200 - 768)));
+          padding: 0 calc(12px + 4 * ((100vw - 768px) / (1200 - 768)));
+          line-height: calc(36px + 4 * ((100vw - 768px) / (1200 - 768)));
+        }
+
+        @media (max-width: 768px) {
+          height: calc(32px + 4 * ((100vw - 420px) / (768 - 420)));
+          padding: 0 calc(2px + 10 * ((100vw - 420px) / (768 - 420)));
+          line-height: calc(32px + 4 * ((100vw - 420px) / (768 - 420)));
+          font-size: calc(12px + 2 * ((100vw - 420px) / (768 - 420)));
+          margin-left: 2px;
+        }
+      }
+
+      .header__left {
+        flex: 0 0 50%;
+        display: flex;
+
+        .header__title {
+          margin: 0;
+          flex: 0 0 50%;
+          font-size: 40px;
+          font-weight: 900;
+          font-style: italic;
+          padding-top: 4px;
+
+          @media (max-width: 1200px) {
+            font-size: calc(36px + 4 * ((100vw - 768px) / (1200 - 768)));
+          }
+
+          @media (max-width: 768px) {
+            font-size: calc(32px + 4 * ((100vw - 420px) / (768 - 420)));
+            flex: 0 0 40%;
+          }
+
+          a {
+            color: #fff;
+
+            &:hover {
+              color: #cecece;
+            }
+          }
+        }
+
+        .header__button_board {
+          flex: 0 0 25%;
+          display: flex;
+          justify-content: left;
+        }
+
+        .header__button_profile {
+          flex: 0 0 25%;
+          display: flex;
+          justify-content: right;
+        }
+      }
+
+      .header__right {
+        flex: 0 0 45%;
+        display: flex;
+
+        @media (max-width: 768px) {
+          justify-content: right;
+        }
+
+        .header__langs {
+          flex: 0 0 75%;
+          display: flex;
+          justify-content: right;
+          margin-top: 8px;
+
+          @media (max-width: 1200px) {
+            margin-top: calc(6px + 2 * ((100vw - 768px) / (1200 - 768)));
+          }
+
+          @media (max-width: 768px) {
+            margin-top: calc(5px + 1 * ((100vw - 420px) / (768 - 420)));
+            flex: 0 0 45%;
+            justify-content: center;
+          }
+
+          ::ng-deep .mat-button-toggle-group {
+            height: 24px;
+            border-radius: 5px;
+          }
+
+          .mat-button-toggle {
+            background-color: #d5bda5;
+            color: #211c1a;
+            height: 24px;
+
+            ::ng-deep .mat-button-toggle-label-content {
+              font-size: 14px;
+              padding: 0 10px;
+              line-height: 24px;
+            }
+
+            &:hover {
+              background-color: #b6a28d;
+            }
+          }
+
+          .mat-button-toggle-checked {
+            background-color: #938472;
+            color: #000;
+          }
+        }
+
+        .header__button_logout {
+          flex: 0 0 25%;
+          display: flex;
+          justify-content: right;
+
+          @media (max-width: 768px) {
+            flex: 0 0 40%;
+          }
+        }
+      }
+    }
+  }
+
+  .header__bottom {
+    height: 30px;
+    background: #211c1a;
+    position: sticky;
+    top: 30px;
+    z-index: 10;
+
+    @media (max-width: 1200px) {
+      height: calc(20px + 10 * ((100vw - 768px) / (1200 - 768)));
+      top: calc(20px + 10 * ((100vw - 768px) / (1200 - 768)));
+    }
+
+    @media (max-width: 768px) {
+      height: calc(10px + 10 * ((100vw - 420px) / (768 - 420)));
+      top: calc(10px + 10 * ((100vw - 420px) / (768 - 420)));
+    }
+  }
+}

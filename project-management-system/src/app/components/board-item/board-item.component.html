@@ -1,0 +1,49 @@
+<section class="main">
+  <div class="column__search__container">
+    <div class="left-side-block">
+      <button routerLink="" mat-button>
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h2 class="main__title">{{ setFilteredTitle(boardTitle) }}</h2>
+    </div>
+    <div class="main__search">
+      <mat-form-field class="search-form" appearance="fill">
+        <mat-label class="search-label">{{ 'MAIN.SEARCH' | translate }}</mat-label>
+        <input matInput (input)="changeSearchValue($event)">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="main__body">
+    <div class="main__top">
+      <mat-progress-spinner
+        mode="indeterminate"
+        diameter="60"
+        *ngIf="isResponseSuccess()"
+      >
+      </mat-progress-spinner>
+      <div
+        cdkDropListGroup
+        *ngIf="!isResponseSuccess()"
+        class="board-container"
+      >
+        <div
+          class="board-box"
+          cdkDropListOrientation="horizontal"
+          (cdkDropListDropped)="drop($event)"
+          cdkDropList
+        >
+          <div
+            #column
+            class="column-block"
+            *ngFor="let column of http.dataColumns
+              | columnsFilter
+              | columnsSearch: searchValue"
+          >
+            <pms-task-column [column]="column"></pms-task-column>
+          </div>
+          <pms-column-creation></pms-column-creation>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

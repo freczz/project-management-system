@@ -1,0 +1,61 @@
+<section
+  #matPanel
+  class="column-section"
+>
+<mat-expansion-panel
+  (afterExpand)="titleInputColumn.focus()"
+  [(expanded)]="isExpanded"
+  [disabled]="isExpanded"
+  class="column-expansion-panel"
+  hideToggle
+>
+  <mat-expansion-panel-header (click)="setZIndex()" *ngIf="!isExpanded">
+    <mat-panel-title class="white-theme">
+      <mat-icon>add</mat-icon>
+      <span>{{ 'BOARD.ADD.COLUMN' | translate }}</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+    <form
+    #form="ngForm"
+    [formGroup]="formGroup"
+    (ngSubmit)="onSubmit(form, titleInputColumn)"
+  >
+    <mat-form-field appearance="outline">
+      <input
+        #titleInputColumn
+        matInput
+        class="title-input white-theme"
+        formControlName="title"
+        [placeholder]="'BOARD.ADD.PLACEHOLDERS.COLUMN' | translate"
+        type="text"
+      />
+      <mat-error *ngIf="formGroup.invalid">
+        {{ 'BOARD.ADD.ERROR' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <div class="btns-block">
+      <button
+        class="btn-submit"
+        type="submit"
+        color="primary"
+        mat-raised-button
+      >
+        {{ 'BOARD.ADD.COLUMN' | translate }}
+      </button>
+      <button
+        type="button"
+        mat-button
+        (click)="resetForm()"
+      >
+        <mat-icon class="white-theme" matSuffix>highlight_off</mat-icon>
+      </button>
+    </div>
+  </form>
+</mat-expansion-panel>
+</section>
+<div
+  class="modal-window"
+  (click)="resetForm()"
+  *ngIf="isExpanded"
+>
+</div>

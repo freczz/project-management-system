@@ -1,0 +1,53 @@
+<section class="new_board">
+  <h2 class="new_board__title">
+    {{ 'HEADER.NEW_BOARD.TITLE' | translate }}
+  </h2>
+  <form
+    class="new_board__form"
+    [formGroup]="newBoardForm"
+    (ngSubmit)="createBoard({
+        title: newBoardForm.get('title')?.value,
+        description: newBoardForm.get('description')?.value
+      })"
+  >
+    <div class="new_board__input_title">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'HEADER.NEW_BOARD.LABELS.TITLE' | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          [placeholder]="'HEADER.NEW_BOARD.PLACEHOLDERS.TITLE' | translate"
+          formControlName="title"
+        >
+      </mat-form-field>
+    </div>
+    <div class="new_board__input_description">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'HEADER.NEW_BOARD.LABELS.DESCRIPTION' | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          [placeholder]="'HEADER.NEW_BOARD.PLACEHOLDERS.DESCRIPTION' | translate"
+          formControlName="description"
+        >
+      </mat-form-field>
+    </div>
+    <div class="new_board__buttons">
+      <div class="new_board__exit">
+        <button
+          mat-raised-button
+          color="success"
+          (click)="closeDialog()"
+        >{{ 'HEADER.NEW_BOARD.CANCEL' | translate }}</button>
+      </div>
+      <div class="new_board__submit">
+        <button
+          mat-raised-button
+          color="success"
+          type="submit"
+          (click)="validateFormFields()"
+        >{{ 'HEADER.NEW_BOARD.CREATE' | translate }}</button>
+      </div>
+    </div>
+  </form>
+</section>

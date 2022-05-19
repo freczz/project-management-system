@@ -1,0 +1,96 @@
+<section class="welcome">
+  <div class="welcome-wrapper">
+    <h2 [@expandTitle]="state" class="welcome-title">
+      {{ 'WELCOME.TITLE' | translate }}
+    </h2>
+    <p class="course">{{ 'WELCOME.COURSE' | translate }}</p>
+    <div class="about-project">
+      <div class="about-container">
+        <div class="top-container">
+          <div class="auth-container">
+            <div class="sign-up">
+              <p class="login-text">{{ 'WELCOME.LOGIN' | translate }}</p>
+              <img
+                src="../../../assets/svg/login.svg"
+                class="login"
+                alt="login"
+                draggable="false"
+                (click)="openDialog(false)"
+              />
+            </div>
+            <div class="registration">
+              <p class="login-text">{{ 'WELCOME.SIGN_UP' | translate }}</p>
+              <img
+                src="../../../assets/svg/registr.svg"
+                class="login"
+                alt="login"
+                draggable="false"
+                (click)="openDialog(true)"
+              />
+            </div>
+          </div>
+          <div class="welcome-langs">
+            <mat-button-toggle-group
+              appearance="legacy"
+              name="lang"
+              aria-label="Lang"
+              [value]="currentLanguage"
+            >
+              <mat-button-toggle
+                (click)="changeLanguage($event)"
+                value="en"
+              >En</mat-button-toggle>
+              <mat-button-toggle
+                (click)="changeLanguage($event)"
+                value="ru"
+              >Ru</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+
+        <h3 class="about-title">{{ 'WELCOME.ABOUT_PROJECT' | translate }}</h3>
+        <p class="project-description">
+          {{ 'WELCOME.DESCRIPTION' | translate }}
+        </p>
+      </div>
+      <h3 class="about-title">{{ 'WELCOME.ABOUT_TEAM' | translate }}</h3>
+      <div class="team-container">
+        <div class="person" *ngFor="let person of team; let index = index">
+          <div class="person-wrapper">
+            <img
+              src="{{ person.imgLink }}"
+              alt=" {{ person.firstName.en }}"
+              class="person-img"
+              draggable="false"
+            />
+            <p class="person-name">
+              {{ 'WELCOME.NAME' | translate:{
+                nameEn: team[index].firstName.en,
+                nameRu: team[index].firstName.ru
+              } }}
+            </p>
+            <a
+              href="https://github.com/freczz"
+              target="_blank"
+              class="github-link"
+            >{{ person.githubName }}</a>
+            <p class="person-specialization">
+              {{ 'WELCOME.STATUS' | translate:{
+                statusEn: team[index].status.en,
+                statusRu: team[index].status.ru
+              } }}
+            </p>
+            <ul class="tasks">
+              <li class="task-item" *ngFor="let item of person.tasks; let i = index">
+                {{ 'WELCOME.TASKS' | translate:{
+                  taskEn: team[index].tasks[i].en,
+                  taskRu: team[index].tasks[i].ru
+                } }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,46 @@
+.login {
+  position: relative;
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+
+  ::ng-deep {
+    .mat-dialog-container {
+      width: 500px;
+      padding: 50px;
+      padding-bottom: 30px;
+    }
+  }
+
+  .form-submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+
+    .mat-button,
+    .mat-flat-button {
+      @media (max-width: 768px) {
+        font-size: calc(12px + 2 * ((100vw - 420px) / (768 - 420)));
+      }
+    }
+
+    .mat-flat-button {
+      width: 200px;
+    }
+  }
+
+  .login-error {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 50px;
+    font-size: 12px;
+    color: #b2151a;
+  }
+}

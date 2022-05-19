@@ -1,0 +1,22 @@
+.new_board {
+  padding: 30px 50px;
+
+  .new_board__title {
+    font-size: 24px;
+  }
+
+  .new_board__form {
+    margin-top: 30px;
+
+    .new_board__input_title input,
+    .new_board__input_description input {
+      font-size: 14px;
+    }
+
+    .new_board__buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

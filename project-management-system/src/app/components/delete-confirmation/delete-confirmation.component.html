@@ -1,0 +1,22 @@
+<section class="delete">
+  <h2 class="delete__title">{{ 'DELETE.TITLE' | translate }}</h2>
+  <p class="delete__name">{{itemToDelete.title}}</p>
+  <div class="delete__buttons">
+    <div class="delete__exit">
+      <button
+        mat-raised-button
+        color="success"
+        (click)="closeDialog()"
+      >
+        {{ 'DELETE.NO' | translate }}</button>
+    </div>
+    <div class="delete__submit">
+      <button
+        mat-raised-button
+        color="success"
+        (click)="deleteItem()"
+      >
+        {{ 'DELETE.YES' | translate }}</button>
+    </div>
+  </div>
+</section>

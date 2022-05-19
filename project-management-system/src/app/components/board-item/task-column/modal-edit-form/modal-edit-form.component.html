@@ -1,0 +1,106 @@
+<div class="block-title"
+  *ngIf="data.task">
+  <div class="content-block">
+    <div class="title-box">
+      <mat-icon>list_alt</mat-icon>
+      <span class="task-title title">{{ data.task.title }}</span>
+    </div>
+    <mat-card-subtitle>
+      <span class="title">{{ 'BOARD.MODAL.FROM_COLUMN' | translate }}</span>
+      <span class="column-title">{{ data.column.title }}</span>
+    </mat-card-subtitle>
+  </div>
+</div>
+<div class="block-title">
+  <div class="content-block">
+    <div class="title-box">
+      <mat-icon>grading</mat-icon>
+      <span class="title">{{ 'BOARD.MODAL.DESCRIPTION' | translate }}</span>
+    </div>
+    <form
+      #form="ngForm"
+      class="task-form"
+      [formGroup]="formGroup"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-dialog-content>
+        <mat-form-field
+          class="description-field"
+          appearance="outline"
+        >
+          <textarea
+            matInput
+            (click)="isExpanded = true"
+            #textarea
+            tabindex="-1"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            formControlName="description"
+            rows="6"
+            cols="10"></textarea>
+        </mat-form-field>
+      </mat-dialog-content>
+      <mat-error *ngIf="form.invalid">{{ 'BOARD.MODAL.ERROR' | translate }}</mat-error>
+      <mat-radio-group
+        *ngIf="data.task"
+        class="radio-group"
+        aria-label="Select an option"
+      >
+        <mat-radio-button
+          class="radio-btn"
+          tabindex="-1"
+          (change)="setRadioValue($event)"
+          (click)="isExpanded = true"
+          [checked]="data.task.done === true"
+          [value]="'completed'"
+        >
+          {{ 'BOARD.MODAL.COMPLETED' | translate }}
+        </mat-radio-button>
+        <mat-radio-button
+          class="radio-btn"
+          tabindex="-1"
+          (change)="setRadioValue($event)"
+          (click)="isExpanded = true"
+          [checked]="data.task.done === false"
+          [value]="'not-completed'"
+        >
+          {{ 'BOARD.MODAL.INCOMPLETED' | translate }}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div class="btns-block" *ngIf="isExpanded">
+        <button
+          class="btn-submit btn-cancel"
+          type="submit"
+          mat-raised-button
+        >
+          {{ 'BOARD.MODAL.SAVE' | translate }}
+        </button>
+        <button
+          type="button"
+          mat-button
+          (click)="resetForm()"
+          class="btn-cancel"
+        >
+          <mat-icon matSuffix>highlight_off</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<mat-dialog-actions
+  class="close-btn"
+  mat-dialog-actions
+  align="start"
+>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="closeDialog()"
+    [mat-dialog-close]="data.task"
+    >
+    {{ 'BOARD.MODAL.OK' | translate }}
+  </button>
+  <button (click)="deleteTask()" mat-button>
+    {{ 'BOARD.MODAL.DELETE' | translate }}
+  </button>
+</mat-dialog-actions>

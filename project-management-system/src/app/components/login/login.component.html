@@ -1,0 +1,173 @@
+<section class="login blue-theme" *ngIf="isNewUser">
+  <div class="registration">
+    <h2 class="form-title">
+      {{ 'LOGIN.SIGN_UP.TITLE' | translate }}
+    </h2>
+    <form
+      class="login-form"
+      [formGroup]="registrationForm"
+      (ngSubmit)="signUp({
+          name: registrationForm.get('name')?.value,
+          login: registrationForm.get('login')?.value,
+          password: registrationForm.get('password')?.value
+        })"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'LOGIN.LABELS.NAME' | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          [placeholder]="'LOGIN.PLACEHOLDERS.NAME' | translate"
+          formControlName="name"
+          [class.is-invalid]="
+            registrationForm.get('name')?.touched &&
+            registrationForm.get('name')?.errors"
+          (input)="clearErrorMessage()"
+        />
+        <mat-error
+          *ngIf="
+            registrationForm.get('name')?.invalid &&
+            registrationForm.get('name')?.touched"
+        >
+          {{ 'LOGIN.ERRORS.NAME.REQUIRED' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'LOGIN.LABELS.LOGIN' | translate }}</mat-label>
+        <input
+          matInput
+          type="email"
+          [placeholder]="'LOGIN.PLACEHOLDERS.LOGIN' | translate"
+          name="login"
+          formControlName="login"
+          [class.is-invalid]="
+            registrationForm.get('login')?.touched &&
+            registrationForm.get('login')?.errors"
+          (input)="clearErrorMessage()"
+        />
+        <mat-error *ngIf="registrationForm.get('login')?.errors?.['required']">
+          {{ 'LOGIN.ERRORS.LOGIN.REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="registrationForm.get('login')?.errors?.['pattern']">
+          {{ 'LOGIN.ERRORS.LOGIN.PATTERN' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'LOGIN.LABELS.PASSWORD' | translate }}</mat-label>
+        <input
+          matInput
+          type="password"
+          [placeholder]="'LOGIN.PLACEHOLDERS.PASSWORD' | translate"
+          name="password"
+          formControlName="password"
+          [class.is-invalid]="
+            registrationForm.get('password')?.touched &&
+            registrationForm.get('password')?.errors"
+          (input)="clearErrorMessage()"
+        />
+        <mat-error
+          *ngIf="registrationForm.get('password')?.errors?.['required']">
+          {{ 'LOGIN.ERRORS.PASSWORD.REQUIRED' | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="registrationForm.get('password')?.errors?.['pattern']">
+          {{ 'LOGIN.ERRORS.PASSWORD.PATTERN' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <div class="form-submit">
+        <button
+          mat-button
+          color="primary"
+          (click)="toggleAuthForm()"
+        >
+          {{ 'LOGIN.SIGN_UP.TOGGLE' | translate }}
+        </button>
+        <button
+          type="submit"
+          (click)="validateFormFields()"
+          mat-flat-button
+          color="primary"
+        >
+          {{ 'LOGIN.SIGN_UP.SUBMIT' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="login-error" *ngIf="errorMessage">
+    {{ 'LOGIN.ERRORS.SERVER.EXISTS' | translate }}
+  </div>
+</section>
+<section class="login blue-theme" *ngIf="!isNewUser">
+  <div class="registration">
+    <h2 class="form-title">{{ 'LOGIN.SIGN_IN.TITLE' | translate }}</h2>
+    <form
+      class="login-form"
+      [formGroup]="authForm"
+      (ngSubmit)="getToken({
+          login: authForm.get('login')?.value,
+          password: authForm.get('password')?.value
+        })"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'LOGIN.LABELS.LOGIN' | translate }}</mat-label>
+        <input
+          matInput
+          type="mail"
+          [placeholder]="'LOGIN.PLACEHOLDERS.LOGIN' | translate"
+          formControlName="login"
+          [class.is-invalid]="
+            authForm.get('login')?.touched && authForm.get('login')?.errors
+          "
+          (input)="clearErrorMessage()"
+        />
+        <mat-error *ngIf="authForm.get('login')?.errors?.['required']">
+          {{ 'LOGIN.ERRORS.LOGIN.REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="authForm.get('login')?.errors?.['pattern']">
+          {{ 'LOGIN.ERRORS.LOGIN.PATTERN' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'LOGIN.LABELS.PASSWORD' | translate }}</mat-label>
+        <input
+          matInput
+          type="password"
+          [placeholder]="'LOGIN.PLACEHOLDERS.PASSWORD' | translate"
+          name="password"
+          formControlName="password"
+          [class.is-invalid]="
+            authForm.get('password')?.touched &&
+            authForm.get('password')?.errors
+          "
+          (input)="clearErrorMessage()"
+        />
+        <mat-error *ngIf="authForm.get('password')?.errors?.['required']">
+          {{ 'LOGIN.ERRORS.PASSWORD.REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="authForm.get('password')?.errors?.['pattern']">
+          {{ 'LOGIN.ERRORS.PASSWORD.PATTERN' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <div class="form-submit">
+        <button
+          mat-button
+          color="primary"
+          (click)="toggleAuthForm()"
+        >
+          {{ 'LOGIN.SIGN_IN.TOGGLE' | translate }}
+        </button>
+        <button
+          type="submit"
+          (click)="validateFormFields()"
+          mat-flat-button
+          color="primary"
+        >
+          {{ 'LOGIN.SIGN_IN.SUBMIT' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="login-error" *ngIf="errorMessage">
+    {{ 'LOGIN.ERRORS.SERVER.NOT_FOUND' | translate }}
+  </div>
+</section>

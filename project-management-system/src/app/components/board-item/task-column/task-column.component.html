@@ -1,0 +1,114 @@
+<mat-card class="column-container" *ngIf="column" cdkDrag>
+  <div class="title-block white-theme">
+    <mat-card-title
+      *ngIf="!isVisibleTitle"
+      (click)="showColumnTitle(titleColumn)"
+      class="title"
+    >
+      <span class="title-content">{{ column.title }}</span>
+    </mat-card-title>
+    <div #formColumnTitle class="block-form-field">
+      <mat-form-field class="form-field-title">
+        <input
+          #titleColumn
+          type="text"
+          [value]="column.title"
+          (keyup.enter)="editTitle($event)"
+          (blur)="editTitle($event)"
+          matInput
+          maxlength="30"
+          class="white-theme"
+        />
+      </mat-form-field>
+    </div>
+    <button
+      (click)="openDialog()"
+      class="btn-edit-column"
+      mat-button
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div
+    *ngIf="column"
+    cdkDropList
+    class="task-box"
+    [id]="column.id"
+    [cdkDropListConnectedTo]="getColumnIds()"
+    [cdkDropListData]="column.tasks"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div
+      class="task-block"
+      *ngFor="let task of column.tasks"
+      cdkDrag
+    >
+      <pms-task-item
+        [boardId]="boardId"
+        [column]="column"
+        [task]="task"
+      ></pms-task-item>
+    </div>
+  </div>
+  <div #matPanel class="mat-panel">
+  <mat-expansion-panel
+    (afterExpand)="titleInput.focus()"
+    [(expanded)]="isExpanded"
+    class="creation-task-block"
+    hideToggle
+  >
+    <mat-expansion-panel-header
+      class="header-expansion-panel"
+      *ngIf="!isExpanded"
+      (click)="setZIndex()"
+    >
+      <mat-panel-title class="white-theme">
+        <mat-icon>add</mat-icon>
+        <span>{{ 'BOARD.ADD.TASK' | translate }}</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form
+      #form="ngForm"
+      [formGroup]="formGroup"
+      (ngSubmit)="onSubmit(form, titleInput)"
+    >
+      <input
+        #titleInput
+        class="title-input white-theme"
+        matInput
+        formControlName="title"
+        [placeholder]="'BOARD.ADD.PLACEHOLDERS.TASK' | translate"
+        type="text"
+      />
+      <mat-error class="error" *ngIf="formGroup.invalid">
+        {{ 'BOARD.ADD.ERROR' | translate }}
+      </mat-error>
+      <div class="btns-block">
+        <button
+          class="btn-task-submit white-theme"
+          type="submit"
+          mat-raised-button
+        >
+          {{ 'BOARD.ADD.TASK' | translate }}
+        </button>
+        <button
+          class="btn-task-remove"
+          type="button"
+          mat-button
+          (click)="resetForm()"
+        >
+          <mat-icon class="delete-icon white-theme" matSuffix>
+            highlight_off
+          </mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-expansion-panel>
+  </div>
+</mat-card>
+<div
+  class="modal-window"
+  (click)="resetForm()"
+  *ngIf="isExpanded"
+>
+</div>

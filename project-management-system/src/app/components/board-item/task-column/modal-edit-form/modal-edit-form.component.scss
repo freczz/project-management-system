@@ -1,0 +1,139 @@
+.block-title {
+  display: flex;
+  min-width: 540px;
+
+  .content-block {
+    margin: 20px 0 0 20px;
+    width: 500px;
+    position: relative;
+
+    .mat-expansion-panel {
+      min-width: 500px;
+      margin-top: 20px;
+
+      .title-input {
+        margin: 10px 0;
+        height: 50px;
+        font-size: 18px;
+      }
+
+      .btn-task-submit {
+        width: 70%;
+      }
+    }
+
+    .mat-card-subtitle {
+      margin-top: 3px;
+      margin-left: 34px;
+    }
+
+    .title-box {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .title {
+        margin-left: 10px;
+      }
+    }
+
+    .radio-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5px;
+
+      .radio-btn {
+        font-size: 12px;
+      }
+    }
+
+    .btns-block {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      .btn-submit {
+        color: #ffffff;
+        width: 80%;
+        background-color: #4682B4;
+      }
+    }
+
+    ::ng-deep {
+      .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: transparent;
+        background-color: #c0c0c031;
+        width: 100%;
+      }
+
+      .mat-dialog-content {
+        max-height: 200px;
+        overflow-x: hidden;
+      }
+
+      .mat-form-field {
+        margin-top: 10px;
+        width: 100%;
+
+        textarea,
+        ::placeholder,
+        .mat-form-field-label {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .mat-expansion-panel {
+      background-color: #c0c0c031;
+    }
+
+    .task-title {
+      font-size: 20px;
+      overflow-wrap: break-word;
+      max-width: 500px - 24px;
+    }
+
+    .column-title {
+      text-decoration: underline;
+    }
+  }
+}
+
+.close-btn {
+  max-width: 500px;
+  border-top: 1px solid rgb(95, 93, 93);
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 740px) {
+  .block-title {
+    min-width: 240px;
+    max-width: max-content;
+  }
+
+  .content-block {
+    width: 65vw !important;
+  }
+}
+
+@media (max-width: 470px) {
+  .mat-dialog-container {
+    padding: 12px !important;
+    overflow: hidden;
+  }
+
+  .radio-group {
+    flex-wrap: wrap;
+  }
+
+  .radio-btn {
+    overflow-wrap: break-word;
+    font-size: 10px !important;
+  }
+
+  .content-block {
+    width: 260px !important;
+  }
+}

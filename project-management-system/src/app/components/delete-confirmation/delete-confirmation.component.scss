@@ -1,0 +1,25 @@
+.delete {
+  padding: 30px 50px;
+
+  .delete__title {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .delete__name {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .delete__buttons {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+
+    .delete__exit {
+      margin-right: 50px;
+    }
+  }
+}
