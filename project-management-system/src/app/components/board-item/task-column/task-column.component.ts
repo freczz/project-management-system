@@ -7,7 +7,11 @@ import {
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { EMPTY_USER_DATA } from 'src/app/constants/constants';
+import {
+  EMPTY_USER_DATA,
+  INITIAL_Z_INDEX,
+  MAX_Z_INDEX,
+} from 'src/app/constants/constants';
 import {
   IColumns,
   IResponse,
@@ -28,6 +32,10 @@ export default class TaskColumnComponent implements OnInit {
   @Input() column!: IColumns;
 
   @ViewChild('formColumnTitle') formColumnTitle!: ElementRef;
+
+  @ViewChild('matPanel') matPanel!: ElementRef;
+
+  @ViewChild('form') form!: FormGroupDirective;
 
   private token: string = '';
 
@@ -96,16 +104,21 @@ export default class TaskColumnComponent implements OnInit {
   }
 
   public onSubmit(form: FormGroupDirective, titleInput: HTMLElement): void {
-    if (this.formGroup.controls['title'].value) {
+    if (this.formGroup.controls['title'].value && this.formGroup.valid) {
       this.getUser(this.formGroup.controls['title'].value);
-      this.resetForm(form);
+      this.resetForm();
     }
     titleInput.focus();
   }
 
-  public resetForm(form: FormGroupDirective): void {
+  public setZIndex(): void {
+    this.matPanel.nativeElement.style.zIndex = MAX_Z_INDEX;
+  }
+
+  public resetForm(): void {
     this.isExpanded = this.isExpanded === false;
-    form.resetForm();
+    this.matPanel.nativeElement.style.zIndex = INITIAL_Z_INDEX;
+    this.form.resetForm();
   }
 
   public drop(event: CdkDragDrop<ITasks[]>): void {

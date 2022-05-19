@@ -1,16 +1,21 @@
+<section
+  #matPanel
+  class="column-section"
+>
 <mat-expansion-panel
   (afterExpand)="titleInputColumn.focus()"
   [(expanded)]="isExpanded"
   [disabled]="isExpanded"
+  class="column-expansion-panel"
   hideToggle
 >
-  <mat-expansion-panel-header *ngIf="!isExpanded">
+  <mat-expansion-panel-header (click)="setZIndex()" *ngIf="!isExpanded">
     <mat-panel-title class="white-theme">
       <mat-icon>add</mat-icon>
       <span>Add column</span>
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <form
+    <form
     #form="ngForm"
     [formGroup]="formGroup"
     (ngSubmit)="onSubmit(form, titleInputColumn)"
@@ -24,6 +29,7 @@
         placeholder="Enter column title"
         type="text"
       />
+      <mat-error *ngIf="formGroup.invalid">Title is too long</mat-error>
     </mat-form-field>
     <div class="btns-block">
       <button
@@ -34,9 +40,20 @@
       >
         Add column
       </button>
-      <button type="button" mat-button (click)="resetForm(form)">
+      <button
+        type="button"
+        mat-button
+        (click)="resetForm()"
+      >
         <mat-icon class="white-theme" matSuffix>highlight_off</mat-icon>
       </button>
     </div>
   </form>
 </mat-expansion-panel>
+</section>
+<div
+  class="modal-window"
+  (click)="resetForm()"
+  *ngIf="isExpanded"
+>
+</div>

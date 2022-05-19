@@ -38,6 +38,7 @@ import ModalEditFormComponent from './components/board-item/task-column/modal-ed
 import ColumnsFilterPipe from './pipes/columns-filter.pipe';
 import ProfileComponent from './components/profile/profile.component';
 import { createTranslateLoader } from './utilities/utils';
+import ColumnsSearchPipe from './pipes/columns-search.pipe';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { createTranslateLoader } from './utilities/utils';
     LoginComponent,
     ProfileComponent,
     ColumnsFilterPipe,
+    ColumnsSearchPipe,
   ],
   imports: [
     BrowserModule,

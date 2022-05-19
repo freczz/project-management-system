@@ -108,3 +108,14 @@ export interface IPostTasks {
   description: string;
   userId: string;
 }
+
+export interface IPutTasks {
+  title: string;
+  done: boolean;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+  id?: string;
+}

@@ -119,3 +119,9 @@ export enum ItemTitle {
   column = 'the column',
   task = 'the task',
 }
+
+export const INITIAL_Z_INDEX = '0';
+
+export const MAX_Z_INDEX = '110';
+
+export const MAX_BOARD_TITLE_LENGTH = 30;

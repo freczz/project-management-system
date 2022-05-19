@@ -10,12 +10,14 @@ import {
   INewBoardFormData,
   IPostColumns,
   IPostTasks,
+  IPutTasks,
   IResponse,
   ITasks,
   IUser,
   IUsers,
 } from '../interfaces/interfaces';
 import PMSState from '../store/pms.state';
+import { setRequestLink } from '../utilities/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -122,7 +124,23 @@ export default class HttpService {
 
   public getTasks(token: string, columnId: string): Observable<ITasks[]> {
     return this.http.get<ITasks[]>(
-      `${BASE_URL}boards/${this.currentBoardId}/columns/${columnId}/tasks`,
+      `${setRequestLink(this.currentBoardId, columnId)}`,
+      {
+        headers: new HttpHeaders({
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+      }
+    );
+  }
+
+  public getTask(
+    token: string,
+    columnId: string,
+    taskId: string
+  ): Observable<ITasks> {
+    return this.http.get<ITasks>(
+      `${setRequestLink(this.currentBoardId, columnId)}/${taskId}`,
       {
         headers: new HttpHeaders({
           Accept: 'application/json',
@@ -138,7 +156,7 @@ export default class HttpService {
     columnId: string
   ): Observable<IPostTasks> {
     return this.http.post<IPostTasks>(
-      `${BASE_URL}boards/${this.currentBoardId}/columns/${columnId}/tasks`,
+      `${setRequestLink(this.currentBoardId, columnId)}`,
       formData,
       {
         headers: new HttpHeaders({
@@ -168,6 +186,12 @@ export default class HttpService {
     );
   }
 
+  public deleteTask(columnId: string, taskId: string): Observable<ITasks> {
+    return this.http.delete<ITasks>(
+      `${setRequestLink(this.currentBoardId, columnId)}/${taskId}`
+    );
+  }
+
   public getDataBoard(boardId: string, token: string): Observable<IResponse> {
     return this.http.get<IResponse>(`${BASE_URL}boards/${boardId}`, {
       headers: new HttpHeaders({
@@ -184,6 +208,25 @@ export default class HttpService {
   ): Observable<IPostColumns> {
     return this.http.put<IPostColumns>(
       `${BASE_URL}boards/${this.currentBoardId}/columns/${columnId}`,
+      formData,
+      {
+        headers: new HttpHeaders({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+      }
+    );
+  }
+
+  public updateTask(
+    formData: IPutTasks,
+    columnId: string,
+    taskId: string,
+    token: string
+  ): Observable<IPutTasks> {
+    return this.http.put<IPutTasks>(
+      `${setRequestLink(this.currentBoardId, columnId)}/${taskId}`,
       formData,
       {
         headers: new HttpHeaders({

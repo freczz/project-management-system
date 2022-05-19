@@ -1,4 +1,4 @@
-<mat-card class="column-container" *ngIf="column">
+<mat-card class="column-container" *ngIf="column" cdkDrag>
   <div class="title-block white-theme">
     <mat-card-title
       *ngIf="!isVisibleTitle"
@@ -21,7 +21,11 @@
         />
       </mat-form-field>
     </div>
-    <button (click)="deleteColumn()" class="btn-edit-column" mat-button>
+    <button
+      (click)="deleteColumn()"
+      class="btn-edit-column"
+      mat-button
+    >
       <mat-icon>close</mat-icon>
     </button>
   </div>
@@ -34,10 +38,15 @@
     [cdkDropListData]="column.tasks"
     (cdkDropListDropped)="drop($event)"
   >
-    <div class="task-block" *ngFor="let task of column.tasks" cdkDrag>
-      <pms-task-item [task]="task"></pms-task-item>
+    <div
+      class="task-block"
+      *ngFor="let task of column.tasks"
+      cdkDrag
+    >
+      <pms-task-item [column]="column" [task]="task"></pms-task-item>
     </div>
   </div>
+  <div #matPanel class="mat-panel">
   <mat-expansion-panel
     (afterExpand)="titleInput.focus()"
     [(expanded)]="isExpanded"
@@ -47,6 +56,7 @@
     <mat-expansion-panel-header
       class="header-expansion-panel"
       *ngIf="!isExpanded"
+      (click)="setZIndex()"
     >
       <mat-panel-title class="white-theme">
         <mat-icon>add</mat-icon>
@@ -66,6 +76,7 @@
         placeholder="Enter task title"
         type="text"
       />
+      <mat-error class="error" *ngIf="formGroup.invalid">Title is too long</mat-error>
       <div class="btns-block">
         <button
           class="btn-task-submit white-theme"
@@ -78,7 +89,7 @@
           class="btn-task-remove"
           type="button"
           mat-button
-          (click)="resetForm(form)"
+          (click)="resetForm()"
         >
           <mat-icon class="delete-icon white-theme" matSuffix>
             highlight_off
@@ -87,4 +98,11 @@
       </div>
     </form>
   </mat-expansion-panel>
+  </div>
 </mat-card>
+<div
+  class="modal-window"
+  (click)="resetForm()"
+  *ngIf="isExpanded"
+>
+</div>
