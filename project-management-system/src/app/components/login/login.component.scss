@@ -21,6 +21,13 @@
     justify-content: center;
     column-gap: 50px;
 
+    .mat-button,
+    .mat-flat-button {
+      @media (max-width: 768px) {
+        font-size: calc(12px + 2 * ((100vw - 420px) / (768 - 420)));
+      }
+    }
+
     .mat-flat-button {
       width: 200px;
     }

@@ -8,6 +8,7 @@ import {
   SetNewUserStatus,
   SetUserData,
   SetCurrentLanguage,
+  SetCurrentBoardId,
 } from './pms.action';
 
 const initialState: IState = {
@@ -17,6 +18,7 @@ const initialState: IState = {
   isNewUser: false,
   userData: '{}',
   currentLanguage: 'en',
+  currentBoardId: '',
 };
 
 @State<IState>({
@@ -79,6 +81,16 @@ class PMSState {
     });
   }
 
+  @Action(SetCurrentBoardId)
+  private setCurrentBoardId(
+    { patchState }: StateContext<IState>,
+    action: SetCurrentBoardId
+  ) {
+    patchState({
+      currentBoardId: action.currentBoardId,
+    });
+  }
+
   @Selector()
   public static token(state: IState): string {
     return state.token;
@@ -107,6 +119,11 @@ class PMSState {
   @Selector()
   public static currentLanguage(state: IState): string {
     return state.currentLanguage;
+  }
+
+  @Selector()
+  public static currentBoardId(state: IState): string {
+    return state.currentBoardId;
   }
 }
 

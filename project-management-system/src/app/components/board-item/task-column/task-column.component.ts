@@ -8,13 +8,15 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import {
+  EMPTY_ITEM_TO_DELETE,
   EMPTY_USER_DATA,
   INITIAL_Z_INDEX,
   MAX_Z_INDEX,
 } from 'src/app/constants/constants';
 import {
   IColumns,
-  IResponse,
+  IItemToDelete,
+  IPutTasks,
   ITasks,
   IUserData,
   IUsers,
@@ -22,6 +24,9 @@ import {
 import HttpService from 'src/app/services/http.service';
 import PMSState from 'src/app/store/pms.state';
 import { setColumnFormGroup, setNewOrder } from 'src/app/utilities/utils';
+import { MatDialog } from '@angular/material/dialog';
+import { SetItemToDelete } from 'src/app/store/pms.action';
+import DeleteConfirmationComponent from '../../delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'pms-task-column',
@@ -39,6 +44,8 @@ export default class TaskColumnComponent implements OnInit {
 
   private token: string = '';
 
+  public boardId: string = '';
+
   public isExpanded: boolean = false;
 
   public isVisibleTitle: boolean = false;
@@ -49,10 +56,17 @@ export default class TaskColumnComponent implements OnInit {
 
   public userData: IUserData = EMPTY_USER_DATA;
 
-  constructor(public http: HttpService, private store: Store) {}
+  private columnToDelete: IItemToDelete = EMPTY_ITEM_TO_DELETE;
+
+  constructor(
+    public http: HttpService,
+    private store: Store,
+    private dialog: MatDialog
+  ) {}
 
   public ngOnInit(): void {
     this.token = this.store.selectSnapshot(PMSState.token);
+    this.boardId = this.store.selectSnapshot(PMSState.currentBoardId);
   }
 
   public getColumnIds(): string[] {
@@ -64,7 +78,7 @@ export default class TaskColumnComponent implements OnInit {
   }
 
   public getUser(taskTitle: string): void {
-    this.http.getUser(this.token).subscribe((users: IUsers[]): void => {
+    this.http.getUser().subscribe((users: IUsers[]): void => {
       this.userData = JSON.parse(this.store.selectSnapshot(PMSState.userData));
       users.forEach((user: IUsers) => {
         if (user.login === this.userData.login) {
@@ -130,6 +144,23 @@ export default class TaskColumnComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      this.eventContainer.data.forEach(
+        (task: ITasks, i: number, tasks: ITasks[]): void => {
+          const newOrder: number = setNewOrder(tasks) + i;
+          const newTask: IPutTasks = {
+            title: task.title,
+            done: task.done,
+            order: newOrder,
+            description: task.description,
+            userId: task.userId,
+            boardId: this.boardId,
+            columnId: this.eventContainer?.id || '',
+          };
+          this.http
+            .updateTask(newTask, this.eventContainer?.id || '', task.id)
+            .subscribe((): void => {});
+        }
+      );
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -137,17 +168,42 @@ export default class TaskColumnComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+
+      this.eventContainer.data.forEach(
+        (task: ITasks, i: number, tasks: ITasks[]): void => {
+          const newOrder = setNewOrder(tasks) + i;
+          const newTask: IPutTasks = {
+            title: task.title,
+            done: task.done,
+            order: newOrder,
+            description: task.description,
+            userId: task.userId,
+            boardId: this.boardId,
+            columnId: this.eventContainer?.id || '',
+          };
+          if (i === event.currentIndex) {
+            this.http
+              .updateTask(newTask, event.previousContainer?.id || '', task.id)
+              .subscribe((): void => {});
+          } else {
+            this.http
+              .updateTask(newTask, this.eventContainer?.id || '', task.id)
+              .subscribe((): void => {});
+          }
+        }
+      );
     }
   }
 
-  public deleteColumn(): void {
-    this.http.deleteColumn(this.column.id).subscribe((): void => {
-      this.http
-        .getDataBoard(`${this.http.currentBoardId}`, this.token)
-        .subscribe((data: IResponse): void => {
-          this.http.dataColumns = data.columns;
-        });
-    });
+  public openDialog(): void {
+    this.columnToDelete.title = this.column.title;
+    this.columnToDelete.boardId = this.boardId;
+    this.columnToDelete.columnId = this.column.id;
+    this.columnToDelete.taskId = '';
+    this.store.dispatch(
+      new SetItemToDelete(JSON.stringify(this.columnToDelete))
+    );
+    this.dialog.open(DeleteConfirmationComponent);
   }
 
   public editTitle(event: Event): void {
@@ -159,8 +215,7 @@ export default class TaskColumnComponent implements OnInit {
       this.http
         .updateColumn(
           { title: inputValue, order: this.column.order },
-          this.column.id,
-          this.token
+          this.column.id
         )
         .subscribe((): void => {
           this.column.title = inputValue;

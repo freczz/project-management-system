@@ -35,13 +35,10 @@ export default class ColumnCreationComponent implements OnInit {
   ): void {
     if (this.formGroup.controls['title'].value && this.formGroup.valid) {
       this.http
-        .createColumn(
-          {
-            title: this.formGroup.controls['title'].value,
-            order: setNewOrder(this.http.dataColumns),
-          },
-          this.token
-        )
+        .createColumn({
+          title: this.formGroup.controls['title'].value,
+          order: setNewOrder(this.http.dataColumns),
+        })
         .subscribe((): void => {
           this.getBoardId();
         });
@@ -58,7 +55,7 @@ export default class ColumnCreationComponent implements OnInit {
   private getBoardId(): void {
     if (this.http.currentBoardId) {
       this.http
-        .getDataBoard(this.http.currentBoardId, this.token)
+        .getDataBoard(this.http.currentBoardId)
         .subscribe((item: IResponse): void => {
           this.http.dataColumns = item.columns;
         });

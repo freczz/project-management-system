@@ -13,6 +13,7 @@
   </button>
   <a
     [routerLink]="['/board', board.id]"
+    (click)="saveBoardId()"
     class="item__top_link"
     [title]="board.title"
   >{{ board.title }}</a>
@@ -20,6 +21,7 @@
 <div class="item__bottom">
   <a
     [routerLink]="['/board', board.id]"
+    (click)="saveBoardId()"
     class="item__bottom_link"
     [title]="board.description"
   >{{ board.description }}</a>

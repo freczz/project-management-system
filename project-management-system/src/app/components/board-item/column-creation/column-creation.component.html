@@ -12,7 +12,7 @@
   <mat-expansion-panel-header (click)="setZIndex()" *ngIf="!isExpanded">
     <mat-panel-title class="white-theme">
       <mat-icon>add</mat-icon>
-      <span>Add column</span>
+      <span>{{ 'BOARD.ADD.COLUMN' | translate }}</span>
     </mat-panel-title>
   </mat-expansion-panel-header>
     <form
@@ -26,10 +26,12 @@
         matInput
         class="title-input white-theme"
         formControlName="title"
-        placeholder="Enter column title"
+        [placeholder]="'BOARD.ADD.PLACEHOLDERS.COLUMN' | translate"
         type="text"
       />
-      <mat-error *ngIf="formGroup.invalid">Title is too long</mat-error>
+      <mat-error *ngIf="formGroup.invalid">
+        {{ 'BOARD.ADD.ERROR' | translate }}
+      </mat-error>
     </mat-form-field>
     <div class="btns-block">
       <button
@@ -38,7 +40,7 @@
         color="primary"
         mat-raised-button
       >
-        Add column
+        {{ 'BOARD.ADD.COLUMN' | translate }}
       </button>
       <button
         type="button"

@@ -3,7 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { EMPTY_ITEM_TO_DELETE, ItemTitle } from 'src/app/constants/constants';
-import { IBoard, IItemToDelete } from 'src/app/interfaces/interfaces';
+import {
+  IBoard,
+  IItemToDelete,
+  IResponse,
+} from 'src/app/interfaces/interfaces';
 import HttpService from 'src/app/services/http.service';
 import { SetBoards, SetToken } from 'src/app/store/pms.action';
 import PMSState from 'src/app/store/pms.state';
@@ -55,6 +59,20 @@ export default class DeleteConfirmationComponent implements OnInit {
           this.http.getBoards().subscribe((boards: IBoard[]): void => {
             this.store.dispatch(new SetBoards(JSON.stringify(boards)));
           });
+          break;
+        case ItemTitle.column:
+          this.http
+            .getDataBoard(`${this.http.currentBoardId}`)
+            .subscribe((data: IResponse): void => {
+              this.http.dataColumns = data.columns;
+            });
+          break;
+        case ItemTitle.task:
+          this.http
+            .getDataBoard(`${this.http.currentBoardId}`)
+            .subscribe((data: IResponse): void => {
+              this.http.dataColumns = data.columns;
+            });
           break;
         default:
           break;

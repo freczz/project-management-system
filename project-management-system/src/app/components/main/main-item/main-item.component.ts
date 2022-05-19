@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { EMPTY_BOARD, EMPTY_ITEM_TO_DELETE } from 'src/app/constants/constants';
 import { IBoard, IItemToDelete } from 'src/app/interfaces/interfaces';
-import { SetItemToDelete } from 'src/app/store/pms.action';
+import { SetCurrentBoardId, SetItemToDelete } from 'src/app/store/pms.action';
 import PMSState from 'src/app/store/pms.state';
 import DeleteConfirmationComponent from '../../delete-confirmation/delete-confirmation.component';
 
@@ -23,6 +23,10 @@ export default class MainItemComponent implements OnInit {
 
   public ngOnInit(): void {
     [this.firstLetter] = this.board.title.toUpperCase().split('');
+  }
+
+  public saveBoardId(): void {
+    this.store.dispatch(new SetCurrentBoardId(this.board.id));
   }
 
   public openDialog(e: Event): void {
