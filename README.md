@@ -17,7 +17,7 @@
 
 ### Deploy link: ###
 
-http://dog-house.by/
+https://freczz-project-management-system.netlify.app/
 
 ### Backend link: ###
 
